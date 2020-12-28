@@ -1,0 +1,59 @@
+.messageSender{
+    display: flex;
+    margin-top: 30px;
+    margin-left: 30%;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 8px 5px 7px -7px rgba(0,0,0,0.75);
+    width: fit-content;
+    height: fit-content;
+}
+.messageSender__top{
+display: flex;
+border-bottom:1px solid #eff2f5 ;
+/*padding-bottom: 15px;*/
+padding: 15px;
+
+}
+.messageSender__top>form{
+    flex: 1;
+    display: flex;
+}
+.messageSender__top>form>Input{
+    outline-width: 0;
+    border: none !important;
+    padding: 5px 20px;
+    margin: 0 10px;
+    border-radius:999px ;
+    background-color: #eff2f5;
+}
+.messageSender__File_Selecion{
+    width: 30%;
+    
+}
+.messageSender__top>form>button{
+    height: 0;
+    width: 0;
+    background-color: transparent;
+    border: none;
+}
+.messagesender__input{
+    flex: 1;
+}
+.messageSender__bottom{
+    display: flex;
+    justify-content: space-between;
+
+}
+.messageSender__option{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    color: gray;
+    margin: 5px;
+    cursor: pointer;
+}
+.messageSender__option>h4{
+font-size: medium;
+}

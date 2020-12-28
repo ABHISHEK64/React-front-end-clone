@@ -1,0 +1,7 @@
+.App{
+  background-color: #f1f2f5;
+  overflow: hidden;
+}
+.App__Body{
+  display: flex;
+}
