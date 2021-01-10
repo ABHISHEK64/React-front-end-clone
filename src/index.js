@@ -6,13 +6,15 @@ import reportWebVitals from './reportWebVitals';
 //import * as serviceWorker from './serviceWorker'
 import { StateProvider } from './StateProvider';
 import Reducer, { initialState } from './Reducer';
+import {BrowserRouter as Router} from 'react-router-dom';
+import { from } from 'form-data';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Router>
     <StateProvider initialState={initialState} reducer={Reducer}>
     <App />
     </StateProvider>
-  </React.StrictMode>,
+  </Router>,
   document.getElementById('root')
 );
 

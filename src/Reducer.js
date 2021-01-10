@@ -12,6 +12,11 @@ const Reducer=(state,action)=>{
                 ...state,
                 user:action.user
             };
+        case "SET_USER":
+            return{
+                ...state,
+                user:action.user
+            }    
         default:
             return state  ;  
     }

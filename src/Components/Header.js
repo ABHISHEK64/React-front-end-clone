@@ -21,7 +21,7 @@ import './Header.css';
 import {useStateValue} from '../StateProvider';
 import Modal from '@material-ui/core/Modal';
 import {makeStyles} from '@material-ui/core/styles'
-
+import {Link} from 'react-router-dom';
 function getModalStyle() {
     const top = 90
     const left = 10
@@ -53,7 +53,10 @@ const Header= () => {
     const[{user},dispatch]=useStateValue();
     const [open,setOpen]=useState(false);
     const classes= useStyles(getModalStyle);
-   
+    const HandlSignOut=()=>{
+      auth.signOut();
+      <Login/>
+    }
     return (
         <div className="header">
              
@@ -125,7 +128,7 @@ const Header= () => {
                         <li className="_BTet"><div className="_8Cet"><SettingsIcon/></div><h3>Settings & privacy</h3></li>
                         <li className="_BTet"> <div className="_8Cet"><HelpIcon/></div><h3>Help & support</h3></li>
                         <li className="_BTet"> <div className="_8Cet"><Brightness2Icon/></div> <h3>Display preferences</h3></li>
-                        <li className="_BTet"> <IconButton><div className="_8Cet"><MeetingRoomIcon onClick={()=>auth.signOut()} /></div><h3>Log Out</h3></IconButton></li>
+                        <Link to="/"className="_BTet"><li className="_BTet" onClick={HandlSignOut}> <div className="_8Cet"><MeetingRoomIcon /></div><h3>Log Out</h3></li></Link>
                 
                         
                     </ul>

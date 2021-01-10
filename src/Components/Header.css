@@ -220,6 +220,7 @@ ul:hover{
 }
 ._BTet{
     margin-bottom: 10%;
+    text-decoration: none !important;
 }
 ._BTet>h3{
 
@@ -228,5 +229,5 @@ margin-left: 5px;
 text-align: center;
 font-size: small;
 display: flex;
-
+text-decoration: none !important;
 }

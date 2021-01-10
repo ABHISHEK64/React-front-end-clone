@@ -6,6 +6,7 @@ import{actionTypes} from '../Reducer'
 import  './Login.css';
 import Modal from '@material-ui/core/Modal';
 import {makeStyles} from '@material-ui/core/styles'
+import {useHistory} from 'react-router-dom';
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -37,6 +38,7 @@ function getModalStyle() {
     },
   }));  
 const Login=()=> {
+    const history=useHistory()
     const [state,dispatch]=useStateValue()
     const [modalStyle]=useState()
     const classes= useStyles(getModalStyle);
@@ -53,7 +55,10 @@ const Login=()=> {
          dispatch({
             type:actionTypes.SET_USER,
             user:result.user
+            
         })
+        history.push('/Home')
+
      })  
      .catch((error)=>alert(error.message))
     }
@@ -67,6 +72,7 @@ const Login=()=> {
                 type:actionTypes.SET_USER,
                 user:result.user
             })
+            history.push('/Home')
         }).catch(error=>alert(error.message))
         //return this.get('store').createRecord('user');
     }
