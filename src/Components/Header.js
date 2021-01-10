@@ -1,28 +1,73 @@
-import React from 'react';
+import React,{Component,useState}from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import HOMEICON from '@material-ui/icons/Home';
 import FlagICON from '@material-ui/icons/Flag';
 import SubscriptionsOutlinedIcon from '@material-ui/icons/SubscriptionsOutlined';
 import StorefontOutlinedIcon from '@material-ui/icons/StorefrontOutlined';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircleOutlined';
-import { Avatar, IconButton } from '@material-ui/core';
+import { Avatar, Button, IconButton } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import ForumIcon from '@material-ui/icons/ForumOutlined';
 import NotificatonsActiveIcon from '@material-ui/icons/NotificationImportantOutlined';
 import ExpendMoreIcon from '@material-ui/icons/ExpandMoreOutlined';
+import FeedbackIcon from '@material-ui/icons/Feedback';
+import SettingsIcon from '@material-ui/icons/Settings';
+import HelpIcon from '@material-ui/icons/Help';
+import Brightness2Icon from '@material-ui/icons/Brightness2';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+import { auth,provider,provider1} from '../firebase';
+import Login from '../Components/Login';
 import './Header.css';
 import {useStateValue} from '../StateProvider';
+import Modal from '@material-ui/core/Modal';
+import {makeStyles} from '@material-ui/core/styles'
+
+function getModalStyle() {
+    const top = 90
+    const left = 10
+  
+    return {
+      top: `${top}%`,
+      left: `${left}%`,
+      transform: `translate(-${top}%, -${left}%)`,
+    };
+  }
+  const useStyles = makeStyles((theme) => ({
+    paper: {
+      position: 'absolute',
+      width: 400,
+      borderRadius:"6px",
+      height:500,
+      background:'none' ,
+      border: '1px solid gray',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(1, 1, 9),
+      margin: theme.spacing(1,110,200,210),
+      maxWidth:991,
+      
+      
+    },
+  }));  
+
 const Header= () => {
-    const[{user},dispatch]=useStateValue()
+    const[{user},dispatch]=useStateValue();
+    const [open,setOpen]=useState(false);
+    const classes= useStyles(getModalStyle);
+   
     return (
         <div className="header">
+             
+             
+            { 
+               user?(
+               <>
             <div className="header_left">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="facebook_logo"/>
 
             </div>
             <div className="header_input">
                 <SearchIcon/>
-                <input placeholder="Search facebook" type="text"/>
+                <input placeholder="Search Facebook" type="text"/>
 
             </div>
             <div className="header__center">
@@ -52,8 +97,43 @@ const Header= () => {
               <div className='header__info'>
                   <Avatar src={user.photoURL} />
                   <h4>{user.displayName}</h4>
-
+                 
               </div>
+              <Modal open={open}
+        onClose={()=>setOpen(false)} className="mix">
+               <div className="_8Met">
+                   <div className="_8Ret"><Avatar src={user.photoURL} className="Profile_img" />
+                   <h1>{user.displayName}</h1>
+                   
+                   </div>
+                   <div className="para">
+                   <h4><a>See your profile</a></h4>
+                   </div>
+                  <div className="_8Ket"></div>
+                  <div className="_8Jet">
+                  <div className="_8Let"><FeedbackIcon/></div>    
+                  
+                  <h3>Give feedback</h3>
+                     
+                </div> 
+                <div className="para1">
+                   <h4><a>Help us improve the new Facebook</a></h4>
+                   </div>
+                   <div className="_8Ket"></div>
+                <div className="_8Bet">
+                    <ul>
+                        <li className="_BTet"><div className="_8Cet"><SettingsIcon/></div><h3>Settings & privacy</h3></li>
+                        <li className="_BTet"> <div className="_8Cet"><HelpIcon/></div><h3>Help & support</h3></li>
+                        <li className="_BTet"> <div className="_8Cet"><Brightness2Icon/></div> <h3>Display preferences</h3></li>
+                        <li className="_BTet"> <IconButton><div className="_8Cet"><MeetingRoomIcon onClick={()=>auth.signOut()} /></div><h3>Log Out</h3></IconButton></li>
+                
+                        
+                    </ul>
+                    
+                    </div>   
+   
+               </div>
+              </Modal>
               <IconButton>
               <AddIcon/>
               </IconButton>
@@ -64,11 +144,21 @@ const Header= () => {
               <NotificatonsActiveIcon/>
               </IconButton>
               <IconButton>
-              <ExpendMoreIcon/>
+                  
+              < ExpendMoreIcon className="Expend_active" onClick={()=>setOpen(true)}/>
+
               </IconButton>
+              
+            
+              
             </div>
+              </>
+              ):(
+                  <Login/>
+              )
+              }
         </div>
     )
-}
+    }
 
 export default Header

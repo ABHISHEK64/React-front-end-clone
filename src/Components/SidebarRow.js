@@ -4,7 +4,7 @@ import './SidebarRow.css';
 const SidebarRow=({src,Icon,title})=> {
     return (
         <div className="sidebarRow">
-            {src &&<Avatar src={src}/>}
+            {src&&<Avatar src={src} className="logo"/>}
             {Icon&& <Icon/>}
             <p>{title}</p>
         </div>

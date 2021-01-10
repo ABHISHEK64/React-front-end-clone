@@ -1,5 +1,10 @@
 .Right_Side{
     float: right;
-    margin-top: 10%;
+    margin-top: -24%;
+    margin-left: 10%;
     position: sticky;
+}
+.line{
+    width: 100%;
+    border-bottom: '10 px solid black';
 }

@@ -1,0 +1,30 @@
+.sponser{
+    display: flex;
+   margin-top: 10%;
+}
+.Sponser_Left{
+    max-width: 400px;
+
+}
+.Sponer_img{
+    width: 200px;
+    height: 20px;
+}
+.Sponer_img >img{
+    width: 90px;
+}
+.Sponser_title {
+    display: flex;
+    flex-direction: column;
+    margin-left: -20%;
+    text-align: center;
+    font-weight: bold;
+
+}
+h1{
+    font-size: 30px;
+}
+.Sponser_link{
+    margin-top: 10%;
+    margin-left: -10%;
+}

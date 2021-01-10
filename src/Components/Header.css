@@ -13,10 +13,11 @@
     justify-content: space-evenly;
 }
 .header_left>img{
+    margin-left: 1px;
     width: 40px;
-    height: 40px;
     object-fit: contain;
     cursor: pointer;
+    border-radius: 100%;
 }
 .header_input{
     display: flex;
@@ -51,20 +52,21 @@
     cursor: pointer ;
     border-bottom: none;
 }
-.header__option--Active>.MuiSvgIcon-root {
-    color: #2e81f4;
+.header__option--Active {
+    color: #2e81f4 !important;
+    border-bottom: 4px solid #2e81f4;
+
 
 }
-.header__option--Active>.MuiSvgIcon-root{
-    border-bottom: 4px solid #2e81f4;
-}
+
 .header__option>.MuiSvgIcon-root{
     color: gray;
+    font-size: 2em;
 
 }
 .header__option>.MuiSvgIcon-root :hover{
     color: #2e81f4;
-
+    border-radius: 100%;
 }
 .header__info{
     display: flex;
@@ -73,8 +75,158 @@
 }
 .header__info>h4{
     margin-left: 10px;
+    text-transform: capitalize;
 }
 .header__right{
     display: flex;
+    cursor: pointer;
+}
+.header__right >.MuiSvgIcon-root{
+    font-size: 5em;
+}
+.Expend_active:active{
+    color: blue;
+}
+.header__right .Profile_img{
+    object-fit: contain;
+    border-radius: 100%;
+}
+.MuiAvatar-circle{
+    border-radius: 100%;
+}
+.mix{
+    background:transparent !important;
+    z-index:1;
 }
 
+._8Met{
+    background-color: white;
+    width: 300px;
+    height: 480px;
+    background-size: cover;
+    box-sizing: border-box;
+    border: 1px solid #eff2f5;
+    border-radius: 7px;
+    box-shadow: 6px 7px 9px -7px rgba(187, 186, 186, 0.75);
+    margin-top: 5%;
+    margin-left: 75%;
+}
+._8Met ._8Ret{
+    display: flex;
+    padding: 16px 0px 20px;
+    color: black;
+    margin: 20px;
+}
+._8Ret>h1{
+    text-transform: capitalize;
+}
+._8Met ._8Ret:hover{
+    cursor: pointer;
+}
+.para {
+    margin-top: -15%;
+    margin-left: 20%;
+    font-size: medium;
+    color: gray;
+}
+.a{
+    font-size: large;
+    font-weight: bold;
+
+}
+._8Ket{
+    border: 2px solid #eff2f5!important;
+    border-radius: 6px;
+    margin-top: 25px;
+}
+._8Met ._8Jet{
+    display: flex;
+    
+    padding: 16px 0px 20px;
+    margin-left: 30px;
+}
+._8Met ._8Jet:hover{
+    cursor: pointer;
+}
+._8Jet >._8Let{
+    
+    background-color:rgb(247, 242, 242);
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+    
+    border-radius: 50%;
+    margin-left: -10px;
+}
+._8Let>.MuiSvgIcon-root{
+    position: relative;
+    align-items: center;
+    margin-top: 25%;
+    margin-left: 25%;
+    width: 20px;
+    height: 20px;
+}
+h1{
+    font-size: 15px
+}
+._8Jet >h3{
+    margin-top: 10px;
+    margin-left: 10px;
+    text-align: center;
+}
+.para1{
+    color: gray;
+    margin-top: -35px;
+    margin-left: 65px;
+}
+._8Aet{
+    border: 2px solid #eff2f5!important;
+    border-radius: 6px;
+    margin-top: 25px;
+}
+li{ display: flex;
+    list-style: none !important;
+    
+}
+
+ul{
+    display: inline-flex;
+    flex-direction: column;
+    margin-top: 1%;
+    margin-left: -14px;
+}
+ul:hover{
+
+    
+    cursor: pointer;
+
+}
+._8Cet{
+    background-color:#eff2f5;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    
+    border-radius: 50%;
+    margin-left: 30px;   
+}
+._8Cet>.MuiSvgIcon-root{
+    position: relative;
+    align-items: center;
+    margin-top: 25%;
+    margin-left: 25%;
+    width: 20px;
+    height: 20px;
+}
+._BTet{
+    margin-bottom: 10%;
+}
+._BTet>h3{
+
+margin-top: 15px;
+margin-left: 5px;
+text-align: center;
+font-size: small;
+display: flex;
+
+}

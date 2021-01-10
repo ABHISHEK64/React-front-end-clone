@@ -1,7 +1,7 @@
 .App{
   background-color: #f1f2f5;
   overflow: hidden;
-}
-.App__Body{
-  display: flex;
+  width: 100%;
+  background-size: cover;
+  height: 100%;
 }
