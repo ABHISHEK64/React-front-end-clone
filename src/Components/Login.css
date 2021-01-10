@@ -229,6 +229,7 @@ vertical-align: middle;
     text-align: center;
     font-size: small;
     text-decoration: none;
+    margin-top: 5px;
 }
 .\._52jV{
         
@@ -240,6 +241,7 @@ vertical-align: middle;
         font-weight: bold;
     
 }
+a{text-decoration: none;}
 a:hover{
     text-decoration: underline;
 }
@@ -288,15 +290,11 @@ align-items: center;
     font-weight: normal;
 }
 .para>p{
-    
+    display: flex;
     margin-top: 25%;
-    font-size: 0.5em;
+    font-size: 15px;
     color: gray;
-    margin-left: 0;
-}
-.para>p>a{
-font-size: 0,5em;
-color:gray;
+    margin-left: -23%;
 }
 .btn .signup_button{
     width: 364px;

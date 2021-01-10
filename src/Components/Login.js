@@ -87,7 +87,7 @@ const Login=()=> {
        const unSubscribe= auth.onAuthStateChanged((authUser)=>{
             if (authUser)
             {
-                 
+                 console.log("Login Credential !!",authUser)
                  setUser(authUser);
                  if(authUser.displayName){
 
@@ -95,7 +95,8 @@ const Login=()=> {
                  else{
                      return authUser.updateProfile({
                          displayName:userName,
-                
+                         photoURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuKHpTBSTmp7UWmw0C18FrbwD9FFsMgWHnZw&usqp=CAU"
+                         
                      });
                  }
             }
@@ -152,7 +153,7 @@ const Login=()=> {
         
           </div>
             <div className="para">
-            <p>By clicking Sign Up, you agree to our <a >Terms</a>, <a >Data Policy</a> and <a >Cookie Policy</a>.<br/>You may receive SMS notifications from us and can opt out at any time.</p> 
+            <p>By clicking Sign Up, you agree to our Terms, Data Policy and Cookie Policy.<br/>You may receive SMS notifications from us and can opt out at any time.</p> 
           </div>
           <div className="btn"> <Button onClick={signUp} className="signup_button">SignUp</Button></div>
             

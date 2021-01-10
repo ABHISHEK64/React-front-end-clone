@@ -109,8 +109,8 @@ const Header= () => {
                    <h1>{user.displayName}</h1>
                    
                    </div>
-                   <div className="para">
-                   <h4><a>See your profile</a></h4>
+                   <div className="para" >
+                   <h4><Link to="/Profile" style={{color:`black`}}>See your profile</Link></h4>
                    </div>
                   <div className="_8Ket"></div>
                   <div className="_8Jet">

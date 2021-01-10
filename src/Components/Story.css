@@ -15,13 +15,11 @@
 .story:hover{
     transform: scale(1.07);
 }
-.story>Avatar{
-    object-fit: fill;
-}
+
 .story_profile{
     margin: 10px;
     border: 3px solid #2e81f4;
-    object-fit: contain;
+    object-fit: fill;
 }
 .story>h4{
     position: absolute;
