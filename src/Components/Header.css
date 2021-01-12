@@ -1,6 +1,6 @@
 .header{
     display: flex;
-    padding: 15px 20px;
+    padding: 9px 9px;
     justify-content: space-between;
     position: sticky;
     background-color: white;
@@ -22,15 +22,22 @@
 .header_input{
     display: flex;
     align-items: center;
-    background-color: #eff2f5;
+    background-color: #eef1f7c7;
     padding: 10px;
+    width: 19.6%;
     margin-left: 10px;
     border-radius:33px;
+}
+.header_input>.MuiSvgIcon-root{
+    font-size: 1.8em;
 }
 .header_input>input{
     border: none;
     background-color: transparent;
     outline-width: 0;
+    font-size: 1.2em;
+    font-weight: medium;
+    color: grey;
 }
 .header__center{
     display: flex;
@@ -40,33 +47,36 @@
 }
 .header__option{
     display: flex;
+    margin: auto;
     align-items: center;
-    padding: 0 30px;
+    width: 100px;
     cursor: pointer ;
+
 }
-.header__option :hover {
+
+.header__option:hover {
+    
     background-color: #eff2f5;
-    display: flex;
-    align-items: center;
-    padding: 0 30px;
+
+    margin: auto;   
+    width: 101px;
     cursor: pointer ;
-    border-bottom: none;
-}
-.header__option--Active {
-    color: #2e81f4 !important;
-    border-bottom: 4px solid #2e81f4;
-
 
 }
+
 
 .header__option>.MuiSvgIcon-root{
     color: gray;
-    font-size: 2em;
+    font-size: 3em;
+    justify-content: center;
 
 }
-.header__option>.MuiSvgIcon-root :hover{
+.header__option--Active>.MuiSvgIcon-root:active{
     color: #2e81f4;
-    border-radius: 100%;
+}
+.header__option>.MuiSvgIcon-root:hover{
+    color: #2e81f4;
+
 }
 .header__info{
     display: flex;
@@ -84,6 +94,21 @@
 .header__right >.MuiSvgIcon-root{
     font-size: 5em;
 }
+.header__Active:active{
+    color: #2e81f4;
+    background-color: #eff2f5;
+    justify-content: center;
+    border-radius: 25px;
+    width: 200px;
+}
+.header__Active{
+    color: #2e81f4;
+    background-color: #eff2f5;
+    justify-content: center;
+    border-radius: 25px;
+    width: 200px;
+}
+
 .Expend_active:active{
     color: blue;
 }

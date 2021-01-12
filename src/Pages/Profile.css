@@ -1,0 +1,23 @@
+.profile_Header{
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(rgb(175, 174, 174) 20%,white 50%);
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 2px 3px 2px rgba(0, 0,0, 0.05);
+    overflow: auto;
+
+}
+.profile_Header>h1{
+ text-align: center;
+ font-size: 2.3em;
+ text-transform: capitalize;
+ font-weight: bold;
+}
+.profile_Header>.Add_Bio{
+    text-align: center;
+    margin-left: 49%;
+    font-size: 18px;
+    cursor: pointer;
+    color: rgb(128, 185, 231)
+}

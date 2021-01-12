@@ -1,6 +1,6 @@
 import React,{Component,useState}from 'react';
 import SearchIcon from '@material-ui/icons/Search';
-import HOMEICON from '@material-ui/icons/Home';
+import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone';
 import FlagICON from '@material-ui/icons/Flag';
 import SubscriptionsOutlinedIcon from '@material-ui/icons/SubscriptionsOutlined';
 import StorefontOutlinedIcon from '@material-ui/icons/StorefrontOutlined';
@@ -74,41 +74,57 @@ const Header= () => {
 
             </div>
             <div className="header__center">
-                <div className="header__option header__option--Active">
-                    <HOMEICON fontsize='large'/>
-
+                
+                
+                  <div className="header__option ">
+                <Link to="/Home"style={{color:`black !important`},{textDecoration:`none`}} className="header__option header__option--Active" >
+                    <HomeTwoToneIcon fontsize='large'/>
+                  </Link>
                 </div>
+                
+                
                 <div className="header__option">
                     <FlagICON fontsize='large'/>
 
                 </div>
+                
+                
                 <div className="header__option ">
                     <SubscriptionsOutlinedIcon fontsize='large'/>
 
                 </div>
+              
+                
                 <div className="header__option ">
                     <StorefontOutlinedIcon fontsize='large'/>
 
                 </div>
-                <div className="header__option ">
+                
+                                
+                  <div className="header__option ">
                     <SupervisedUserCircleIcon fontsize='large'/>
 
                 </div>
-
+                
             </div>
             <div className='header__right'>
-              <div className='header__info'>
+              <Link to="/Profile" style={{color:`black`},{textDecoration:`none`}}>
+              <div className='header__info  header__Active'>
                   <Avatar src={user.photoURL} />
                   <h4>{user.displayName}</h4>
                  
               </div>
+              </Link>
               <Modal open={open}
         onClose={()=>setOpen(false)} className="mix">
                <div className="_8Met">
+                   <Link to="/Profile" style={{color:`black`},{textDecoration:`none`}}>
                    <div className="_8Ret"><Avatar src={user.photoURL} className="Profile_img" />
                    <h1>{user.displayName}</h1>
                    
                    </div>
+                   </Link>
+                   
                    <div className="para" >
                    <h4><Link to="/Profile" style={{color:`black`}}>See your profile</Link></h4>
                    </div>
