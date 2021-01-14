@@ -3,8 +3,8 @@
     padding: 0;
     background-image: linear-gradient(rgb(175, 174, 174) 20%,white 50%);
     width: 100%;
-    height: 100%;
-    box-shadow: 0px 2px 3px 2px rgba(0, 0,0, 0.05);
+    height: fit-content;
+    box-shadow: 0px 2px 3px 2px rgba(0, 0,0, 0.01);
     overflow: auto;
 
 }
@@ -19,5 +19,10 @@
     margin-left: 49%;
     font-size: 18px;
     cursor: pointer;
-    color: rgb(128, 185, 231)
+    color: rgb(128, 185, 231);
+}
+.profile_body{
+    background-color:rgba(0, 0, 0, 0.1) ;
+    width: 100%;
+    height: fit-content;
 }

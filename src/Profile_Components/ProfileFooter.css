@@ -1,4 +1,5 @@
 .ProfileFooter{
+    position:sticky;
     background-color: white;
     display: flex;
     width: 100%;
@@ -7,6 +8,7 @@
     max-width: 800px;
     margin-left: 280px;
     border-top: 1px solid rgb(206, 202, 202);
+    margin-bottom: 0;
     
 }
 .ProfileFooter_Left{

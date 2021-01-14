@@ -4,7 +4,7 @@ import Cover from '../Profile_Components/Cover'
 import { Link } from '@material-ui/core';
 import {useStateValue} from '../StateProvider';
 import ProfileFooter from '../Profile_Components/ProfileFooter'
- 
+import Profile_Left from '../Profile_Components/Profile_Left';
     const Profile=()=>{
         const[{user},dispatch]=useStateValue();
 
@@ -16,6 +16,11 @@ import ProfileFooter from '../Profile_Components/ProfileFooter'
                      <Link className="Add_Bio">Add Bio</Link>
                      <ProfileFooter/>
                 </div>
+                <div className="profile_body">
+                <Profile_Left/>                
+
+                </div>
+
             </div>
         )
     }
