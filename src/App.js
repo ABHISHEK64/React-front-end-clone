@@ -9,6 +9,7 @@ import Profile from './Pages/Profile';
 import{useStateValue} from './StateProvider';
 import {Switch,Route} from "react-router-dom";
 import { auth } from './firebase';
+import Messenger from './Pages/Messenger';
 function  App () {
   const [{user},dispatch]=useStateValue();
   useEffect(() => {
@@ -56,6 +57,11 @@ function  App () {
        <Route exact path="/Profile">
        <Header/>
         <Profile/>
+       </Route>
+       
+       <Route exact path="/Messengger">
+       <Header/>
+        <Messenger/>
        </Route>
      </Switch>
       

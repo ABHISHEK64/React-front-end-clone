@@ -1,0 +1,17 @@
+.Messenger_SidebarChat{
+    display: flex;
+    padding: 20px;
+    cursor: pointer;
+    border-radius: 1px solid #f6f6f6;
+}
+.Messenger_SidebarChat:hover{
+background-color: rgba(0,0,0,0.1);
+}
+.Messenger_SidebarChat__info>h2{
+font-size: 16px;
+margin-bottom: 6px;
+margin-top: 2px;
+}
+.Messenger_SidebarChat__info{
+    margin-left: 15px;
+}
