@@ -2,5 +2,5 @@
     width: fit-content;
     height: fit-content;
     scroll-behavior: auto;
-    
+    position: static;
 }

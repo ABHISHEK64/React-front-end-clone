@@ -1,3 +1,8 @@
+.profile{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.1)!important;
+}
 .profile_Header{
     margin: 0;
     padding: 0;
@@ -22,7 +27,7 @@
     color: rgb(128, 185, 231);
 }
 .profile_body{
-    background-color:rgba(0, 0, 0, 0.1) ;
     width: 100%;
-    height: fit-content;
+    height: 200vh;
+    background-color: rgba(0, 0, 0, 0.1)!important;
 }

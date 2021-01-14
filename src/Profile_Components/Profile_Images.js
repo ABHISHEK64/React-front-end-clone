@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   gridList: {
     width: 400,
-    height: 450,
+    height: 540,
   },
   link:{
      marginTop:'10px',
@@ -53,7 +53,7 @@ export default function ImageGridList() {
     <div className={classes.root}>
         <h1>Photos</h1>
         <Link className={classes.link}>See All Photos</Link>
-      <GridList cellHeight={160} className={classes.gridList} cols={4}>
+      <GridList cellHeight={160} className={classes.gridList} cols={3} rows={3}>
         
           <GridListTile >
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSphLBcP3QubPr2sGjdSXfef4skJu8pjmXRAw&usqp=CAU" alt="" />
@@ -81,7 +81,16 @@ export default function ImageGridList() {
             
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSphLBcP3QubPr2sGjdSXfef4skJu8pjmXRAw&usqp=CAU"/>
             </GridListTile>
-        
+            <GridListTile>
+            
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg0iI4KvlYTko8sB9vqKDFwavRWRDB_FTIlg&usqp=CAU"/>
+            </GridListTile>
+            <GridListTile>
+            
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKaUk939bCCZnFKBzP3VlsIKprp47EtdDMcA&usqp=CAU"/>
+            </GridListTile>
+            
+      
       </GridList>
     </div>
   );
