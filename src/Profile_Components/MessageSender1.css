@@ -1,15 +1,12 @@
 .messageSender1{
-    display: flex;
-    margin-top: -71%;
-    margin-left: 49%;
-    flex-direction: column;
-    
+
     background-color: white;
     border-radius: 10px;
-
+    margin-top: 10px;
     
     box-shadow: 8px 5px 7px -7px rgba(0,0,0,0.02);
     width: 100%;
+    height: fit-content;
     max-width: 440px;
 }
 .messageSender__top{

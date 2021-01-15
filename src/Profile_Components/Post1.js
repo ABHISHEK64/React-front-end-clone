@@ -14,40 +14,40 @@ const Post= forwardRef(({key,postID,profilePic,message,timestamp,imgName,usernam
      return (
         
         <div className='post1' ref={ref}>
-            <div className='post__top'>
+            <div className='post1__top'>
              <Avatar src={profilePic} className='post__Avatar'/>
-             <div className='post__topInfo'>
+             <div className='post1__topInfo'>
               <h3>{username}</h3>
               <p>{new Date(parseInt(timestamp)).toUTCString()}</p>
              </div>
              <div className="PGET"><MoreHorizIcon/></div>
             </div>
-            <div className='post__middle'>
+            <div className='post1__middle'>
               <p>{message}</p>
               
               </div>
         
-                  <div className="post__image">
+                  <div className="post1__image">
                     <img src={imgName}/>
                   
                        </div>
 
               
             <div className="Line"></div>
-            <div className='post__bottom'>
-             <div className='post__option'>
+            <div className='post1__bottom'>
+             <div className='post1__option'>
                <ThumbIcon/>
                <p>Like</p>
              </div>
-             <div className='post__option'>
+             <div className='post1__option'>
                <ChatBubbleOutlineIcon/>
                <p>Comment</p>
              </div>
-             <div className='post__option'>
+             <div className='post1__option'>
                <NearMeIcon/>
                <p>Share</p>
              </div>
-             <div className='post__option'>
+             <div className='post1__option'>
                <AccountCircleIcon/>
                <ExpendMoreOutlined/>
              </div>

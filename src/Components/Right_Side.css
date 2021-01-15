@@ -1,8 +1,10 @@
 .Right_Side{
     float: right;
-    margin-top: -23%;
-    margin-left: 10%;
+    display: flex;
+    flex: 1;
     position: sticky;
+    margin-top: 50px;
+    overflow: hidden;
 }
 .line{
     width: 100%;

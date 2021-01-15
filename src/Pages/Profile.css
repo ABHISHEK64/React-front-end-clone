@@ -1,6 +1,6 @@
 .profile{
     width: 100%;
-    height: 100vh;
+    height: 200vh;
     background-color: rgba(0, 0, 0, 0.1)!important;
 }
 .profile_Header{
@@ -27,6 +27,8 @@
     color: rgb(128, 185, 231);
 }
 .profile_body{
+    display: flex;
+    flex: 1;
     width: 100%;
     height: 200vh;
     background-color: rgba(0, 0, 0, 0.1)!important;

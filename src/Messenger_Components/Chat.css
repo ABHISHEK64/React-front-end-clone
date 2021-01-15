@@ -57,3 +57,34 @@
     margin-left: 10px;
     font-size: xx-small;
 }
+.Chat__footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 62px;
+    max-width: 1000px;
+    border-top: 1px solid lightgray;
+}
+.Chat__footer>form{
+    flex: 1;
+    display: flex;
+    border-radius: 30px;
+    background-color: #eef1f7c7;
+}
+.Chat__footer>form>input{
+    flex: 1;
+    border-radius: 30px;
+    padding: 10px;
+    border: none ;
+    background-color: #eef1f7c7;
+}
+.Chat__footer > form> .MuiSvgIcon-root{
+    padding: 10px;
+    color: rgb(135, 201, 197) ;  
+    cursor: pointer;
+}
+.Chat__footer > .MuiSvgIcon-root{
+    padding: 10px;
+    color: rgb(135, 201, 197) ;  
+    cursor: pointer;
+}

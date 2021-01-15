@@ -5,8 +5,7 @@ import { Link } from '@material-ui/core';
 import {useStateValue} from '../StateProvider';
 import ProfileFooter from '../Profile_Components/ProfileFooter'
 import Profile_Left from '../Profile_Components/Profile_Left';
-import Message_Sender1 from '../Profile_Components/MessageSender1';
-import Post1 from '../Profile_Components/Post1';
+import Profile_Right from '../Profile_Components/Profile_Right';
 import {db,auth} from '../firebase'
     const Profile=()=>{
         const [posts,setPost]=useState([]);  
@@ -32,32 +31,9 @@ import {db,auth} from '../firebase'
                 
 
                 <div className="profile_body">
-                <Profile_Left/> 
-                <Message_Sender1/>    
-                {
-                posts.map(({post,id})=>{
-                    <Post1
-                     key={id}
-                     postId={id}
-                     profilePic={post.profilePic}
-                     message={post.message}
-                     timestamp={post.timestamp}
-                     imgName={post.imgName}
-                     username={post.username } 
-                     
-                    />
-                    
-                    
-                    
-                })}
-                <Post1
-                profilePic={user.photoURL}
-                message="Hey #DBZ LOver"
-                timestamp=""
-                imgName="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-hxgSPtm15mn2G5MOG8C2y4NXm5ln9zgHhg&usqp=CAU"
-                username={user.displayName}
-                />
- 
+                <Profile_Left/>
+                <Profile_Right/> 
+
                 </div>
 
             </div>

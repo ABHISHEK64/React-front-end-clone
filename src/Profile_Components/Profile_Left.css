@@ -3,4 +3,7 @@
     height: fit-content;
     scroll-behavior: auto;
     position: static;
+    display: flex;
+    flex: 0.50;
+    flex-direction: column;
 }

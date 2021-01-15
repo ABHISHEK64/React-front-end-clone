@@ -1,4 +1,4 @@
-import { Avatar, IconButton } from '@material-ui/core'
+import { Avatar, IconButton,Button } from '@material-ui/core'
 import React, { useEffect,useState } from 'react'
 import CallIcon from '@material-ui/icons/Call';
 import VideocamIcon from '@material-ui/icons/Videocam';
@@ -9,18 +9,37 @@ import  InsertPhotoIcon  from '@material-ui/icons/InsertPhoto';
 import GifIcon from '@material-ui/icons/Gif';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import SendIcon from '@material-ui/icons/Send';
+import {useParams} from 'react-router-dom';
+import db from '../firebase';
 import './Chat.css'
 function Chat() {
+    const[input,setInput]=useState("");
     const [seed,setseed]=useState("");
+    const{roomId}=useParams();
+    const [roomName,setRoomName]=useState("");
+    useEffect(()=>{
+      if(roomId){
+          db.collection('rooms').doc(roomId).
+          onSnapshot(snapshot=>setRoomName(snapshot.data().name));
+      }
+    },[roomId])
     useEffect(()=>{
       setseed(Math.floor(Math.random()*5000))
     },[])
+
+    
+    const sendMessage=(e)=>{
+        e.preventDefault();
+        console.log("input");
+        setInput("");
+    }
     return (
         <div className="Chat">
             <div className="Chat__header">
                 <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg` }/>
                 <div className="Chat__headerInfo">
-                    <h3>Room Name</h3>
+                    <h3>{roomName}</h3>
 
                 </div>
                 <div className="Chat__headerRight">
@@ -45,15 +64,22 @@ function Chat() {
                 </p>
             </div>
             <div className="Chat__footer">
-             <AddCircleIcon/>
-             <ImageIcon/>
-             < InsertPhotoIcon/>
-             <GifIcon/>
+             <IconButton>
+             <AddCircleIcon style={{color:'  rgb(135, 201, 197)'}}/>
+             </IconButton>
+             <IconButton>
+             <ImageIcon style={{color:'  rgb(135, 201, 197)'}}/>
+             </IconButton>
+             <IconButton><InsertPhotoIcon style={{color:'  rgb(135, 201, 197)'}}/></IconButton>
+             <IconButton><GifIcon style={{color:'  rgb(135, 201, 197)'}}/></IconButton>
+            
              <form>
-                 <input type="text" placeholder="Aa"/>
+                 <input value={input} type="text" placeholder="Aa" onChange={e=>setInput(e.target.value)}/>
+                 <EmojiEmotionsIcon/>
+                 <IconButton onClick={sendMessage}type="submit"><SendIcon style={{color:'  rgb(135, 201, 197)'}}/></IconButton>
              </form>
-            <EmojiEmotionsIcon/>
-            <ThumbUpIcon/>
+             
+
             </div>
         </div>
     )

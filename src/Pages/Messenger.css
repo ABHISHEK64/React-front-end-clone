@@ -3,5 +3,5 @@
 }
 .Messenger_body{
     display: flex;
-
+   height: 100vh;
 }

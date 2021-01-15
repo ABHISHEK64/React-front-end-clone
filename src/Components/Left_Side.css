@@ -1,5 +1,6 @@
 .Sidebar{
     padding: 25px 10px;
     flex: 0.33;
-    margin-top: -1%;
+    margin-top: 30px;
+    overflow: hidden;
 }

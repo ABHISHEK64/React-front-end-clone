@@ -40,14 +40,16 @@ function  App () {
        <Route exact path="/Home">   
        <div className="App">   
       <Header/>
-      <div className="App_Body">
-       
-      <Left_Side/>  
+       <div className="App_Body">
+       <Left_Side/>  
       
       <Feed/>
       <Right_Side/>
+       </div>
+       
       
-      </div>
+      
+      
       </div>
       </Route>
       
@@ -60,7 +62,7 @@ function  App () {
        </Route>
        
        <Route exact path="/Messengger">
-       <Header/>
+      
         <Messenger/>
        </Route>
      </Switch>
