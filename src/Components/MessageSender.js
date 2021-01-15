@@ -1,4 +1,4 @@
-import { Avatar, Input } from '@material-ui/core'
+import { Avatar, IconButton, Input } from '@material-ui/core'
 import React,{useState} from 'react';
 
 import VideocamIcon from '@material-ui/icons/Videocam';
@@ -22,46 +22,30 @@ const MessageSender=()=>{
     const handleSubmit= async(e)=>{
         e.preventDefault()
         if(imageUrl){
-            const imgForm=new FormData()
-            imgForm.append('file',imageUrl,imageUrl.name)
-            axios.post('https://facebook-clone-mern1.herokuapp.com/upload/image',imgForm,{
-                headers:{
-                    'accept':'application/json',
-                    'Accept-Language':'en-Us,en;q=0.8',
-                    'Content-Type':`multipart/form-data; boundary=${imgForm._boundary}`,
-                }
-            }).then((res)=>{
-                console.log(res.data)
-                const postsData={
-                    message:input,
-                    imgName:res.data.filename,
-                    username:user.displayName,
-                    profilePic:user.photoURL,
-                    timestamp:Date.now()
-                }
-                console.log(postsData)
-                savePost(postsData)
+            db.collection('posts').add({
+                name:user.displayName,
+                profilePic:user.photoURL,
+                message:input,
+                imgName:imageUrl,
+                timestamp:firebase.firestore.FieldValue.serverTimestamp()
+
             })
         }
         else{
-            const postsData={
+            db.collection('posts').add({
+                name:user.displayName,
+                profilePic:user.photoURL,
                 message:input,
                 
-                username:user.displayName,
-                profilePic:user.photoURL,
-                timestamp:Date.now()
-            }
-            console.log(postsData)
-                savePost(postsData)
-        }
+                timestamp:firebase.firestore.FieldValue.serverTimestamp()
+
+            })
+        }        
         setImageurl(null)
         setInput('')
     }
-    const savePost=async(postsData)=>{
-        await axios.post('https://facebook-clone-mern1.herokuapp.com/upload/post',postsData).then((resp)=>{
-            console.log(resp)
-        })
-    }
+    
+    
     return (
         <div className="messageSender">
             <div className="messageSender__top">
@@ -72,11 +56,11 @@ const MessageSender=()=>{
                   placeholder={`what 's going on mind', ${user.displayName}?`} 
                   value={input} 
                   onChange={(e)=>setInput(e.target.value)}/>
-                   <PhotoLibraryIcon style={{color:'green'}}>
-                    <input type="file" 
+                  {/*  <input type="file" 
                   className='messageSender__File_Selecion'
-                  onClick={handleChange}/>
-                        </PhotoLibraryIcon>
+                  onClick={handleChange}/>*/}
+                  <IconButton type="file" onClick={handleChange}><PhotoLibraryIcon/></IconButton>      
+
                   <button onClick={handleSubmit} type='submit'></button>
               </form>
             </div>
@@ -86,11 +70,8 @@ const MessageSender=()=>{
                       <h3>Live Video</h3>
                 </div>
                 <div className="messageSender__option">
-                    <PhotoLibraryIcon style={{color:'green'}}>
-                    <input type="file" 
-                  className='messageSender__File_Selecion'
-                  onClick={handleChange}/>
-                        </PhotoLibraryIcon> 
+                    <PhotoLibraryIcon style={{color:'green'}}/>
+                 
                     
                       <h3>Photo/Video</h3>
                 </div>

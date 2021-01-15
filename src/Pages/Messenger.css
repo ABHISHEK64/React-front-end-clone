@@ -1,5 +1,6 @@
 .Messenger{
-    height: 100vh;
+    margin-top: 60px;
+    scroll-behavior: auto;
 }
 .Messenger_body{
     display: flex;

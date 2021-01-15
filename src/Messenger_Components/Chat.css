@@ -30,7 +30,7 @@
 .Chat__body{
     flex: 1;
     background-color: rgba(179, 116, 116, 0.1);
-    height: 100vh !important;
+    
     overflow:auto;
     
 }
@@ -50,7 +50,7 @@
 }
 .Chat__name{
     position: absolute;
-    top: -15px;
+    top:0px;
     font-size: xx-small;
 }
 .Chat__timestamp{

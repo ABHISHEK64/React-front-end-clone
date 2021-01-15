@@ -4,6 +4,12 @@
     cursor: pointer;
     border-radius: 1px solid #f6f6f6;
 }
+.Messenger_SidebarChat1{
+    color: black;
+}
+.Messenger_SidebarChat1:hover{
+    text-decoration: none;
+}
 .Messenger_SidebarChat:hover{
 background-color: rgba(0,0,0,0.1);
 }

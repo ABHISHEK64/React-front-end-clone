@@ -6,10 +6,12 @@ import NearMeIcon from '@material-ui/icons/NearMeOutlined'
 import AccountCircleIcon from '@material-ui/icons/AccountCircleOutlined'
 import ExpendMoreOutlined from '@material-ui/icons/ExpandMoreOutlined'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import {IconButton} from '@material-ui/core'
 import db from '../firebase'
 import './Post.css'
 const Post= forwardRef(({profilePic,message,timestamp,imgName,username},ref)=>{
      console.log(username);
+     console.log(timestamp);
   
      return (
         
@@ -18,9 +20,9 @@ const Post= forwardRef(({profilePic,message,timestamp,imgName,username},ref)=>{
              <Avatar src={profilePic} className='post__Avatar'/>
              <div className='post__topInfo'>
               <h3>{username}</h3>
-              <p>{new Date(parseInt(timestamp)).toUTCString()}</p>
+              <p>{new Date(timestamp?.toDate()).toUTCString()}</p>
              </div>
-             <div className="PGET"><MoreHorizIcon/></div>
+             <div className="PGET"><IconButton><MoreHorizIcon/></IconButton></div>
             </div>
             <div className='post__middle'>
               <p>{message}</p>

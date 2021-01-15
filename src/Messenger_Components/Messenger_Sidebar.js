@@ -6,8 +6,11 @@ import CreateIcon from '@material-ui/icons/Create';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import Messenger_SidebarChat from './Messenger_SidebarChat';
 import db from '../firebase';
+import {useStateValue} from '../StateProvider';
+
 function Messenger_Sidebar() {
     const[rooms,setRooms]=useState([]);
+    const[{user},dispatch]=useStateValue();
     useEffect(()=>{
           db.collection('rooms').onSnapshot(snapshot=>{
               setRooms(snapshot.docs.map(doc=>({
@@ -30,7 +33,7 @@ function Messenger_Sidebar() {
     return (
         <div className="Messenger_Sidebar">
          <div className="Messenger_Sidebar__header">
-           <Avatar/>
+           <Avatar src={user.photoURL}/>
            <h1>Chats</h1>   
            <div className="Messenger_Sidebar__headerRight">
             <IconButton><MoreHorizIcon/></IconButton>
