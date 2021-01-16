@@ -12,7 +12,7 @@ import './Post.css'
 const Post= forwardRef(({profilePic,message,timestamp,imgName,username},ref)=>{
      console.log(username);
      console.log(timestamp);
-  
+     console.log(imgName);
      return (
         
         <div className='post' ref={ref}>
@@ -26,7 +26,7 @@ const Post= forwardRef(({profilePic,message,timestamp,imgName,username},ref)=>{
             </div>
             <div className='post__middle'>
               <p>{message}</p>
-              
+             
               </div>
         
                   <div className="post__image">

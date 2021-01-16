@@ -45,11 +45,13 @@ cursor: pointer;
     
     font-size: small;
     color: gray;
+    display: flex;
 }
 .post__middle{
     display: flex;
     margin-top: 10px;
     margin-bottom: 10px;
+    align-items: center;
 }
 .post__bottom{
     

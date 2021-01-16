@@ -11,38 +11,26 @@ import axios from '../axios'
 import {useStateValue} from '../StateProvider'
 import FormData from 'form-data'
 const MessageSender=()=>{
-    const [input,setInput]=useState('')
+    const [input,setInput]=useState("")
     
-    const [imageUrl,setImageurl]=useState(null)
+    const [imageUrl,setImageurl]=useState("")
     const [{user},dispatch]=useStateValue()
-    const handleChange=(e)=>{
-         if(e.target.files[0])
-         {setImageurl(e.target.files[0])}
-    }
+   
     const handleSubmit= async(e)=>{
-        e.preventDefault()
-        if(imageUrl){
+        e.preventDefault();
+    
             db.collection('posts').add({
-                name:user.displayName,
+                username:user.displayName,
                 profilePic:user.photoURL,
                 message:input,
                 imgName:imageUrl,
                 timestamp:firebase.firestore.FieldValue.serverTimestamp()
 
-            })
-        }
-        else{
-            db.collection('posts').add({
-                name:user.displayName,
-                profilePic:user.photoURL,
-                message:input,
-                
-                timestamp:firebase.firestore.FieldValue.serverTimestamp()
-
-            })
-        }        
-        setImageurl(null)
-        setInput('')
+            });
+        
+               
+        setImageurl("");
+        setInput("");
     }
     
     
@@ -51,15 +39,19 @@ const MessageSender=()=>{
             <div className="messageSender__top">
               <Avatar src={user.photoURL}/>
               <form>
-                  <input type="text" 
+                  <input 
                   className='messagesender__input' 
                   placeholder={`what 's going on mind', ${user.displayName}?`} 
                   value={input} 
                   onChange={(e)=>setInput(e.target.value)}/>
-                  {/*  <input type="file" 
+                    <input  
+                     value={imageUrl}
                   className='messageSender__File_Selecion'
-                  onClick={handleChange}/>*/}
-                  <IconButton type="file" onClick={handleChange}><PhotoLibraryIcon/></IconButton>      
+                
+                  onChange={(e)=>setImageurl(e.target.value)}
+                  
+                  placeholder='imageUrl Optional'/>
+                  {/*<IconButton type="file" onClick={handleChange}><PhotoLibraryIcon/></IconButton>*/    }  
 
                   <button onClick={handleSubmit} type='submit'></button>
               </form>
