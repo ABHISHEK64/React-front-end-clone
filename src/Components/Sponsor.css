@@ -1,6 +1,5 @@
 .sponser{
     display: flex;
-   margin-top: 10%;
 }
 .Sponser_Left{
     max-width: 400px;
@@ -15,8 +14,8 @@
 }
 .Sponser_title {
     display: flex;
-    flex-direction: column;
-    margin-left: -20%;
+    flex-direction:column;
+    
     text-align: center;
     font-weight: bold;
 
@@ -25,6 +24,6 @@ h1{
     font-size: 30px;
 }
 .Sponser_link{
-    margin-top: 10%;
+    margin-top: 20px;
     margin-left: -10%;
 }

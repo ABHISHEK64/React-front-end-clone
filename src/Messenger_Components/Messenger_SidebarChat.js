@@ -23,7 +23,7 @@ function Messenger_SidebarChat({id,name,addNewChat}) {
         }
     }
     return !addNewChat ?(
-        <Link to={`/Messengger/t/${id}`} className='Messenger_SidebarChat1'>
+        <Link to={`/Messenger/t/${id}`} className='Messenger_SidebarChat1'>
         <div className='Messenger_SidebarChat'>
             <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg` }/>
             <div className="Messenger_SidebarChat__info">

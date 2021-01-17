@@ -22,6 +22,7 @@ function  App () {
            type:'SET_USER',
            user:authUser
          })
+         
        }
        else{
          //the user logg out
@@ -37,9 +38,9 @@ function  App () {
   return (
     <div className="Main_App">
       <Switch>
-       <Route exact path="/Home">   
+       <Route exact path="/Home" >   
        <div className="App">   
-      <Header/>
+      <Header user={user} selected />
        <div className="App_Body">
        <Left_Side/>  
       
@@ -56,12 +57,12 @@ function  App () {
        <Route exact path="/">
        <Login/>
        </Route>
-       <Route exact path="/Profile">
+       <Route  path="/Profile/:uid" >
        <Header/>
         <Profile/>
        </Route>
        
-       <Route exact path="/Messengger">
+       <Route exact path="/Messenger">
        <Header/>
         <Messenger/>
        </Route>

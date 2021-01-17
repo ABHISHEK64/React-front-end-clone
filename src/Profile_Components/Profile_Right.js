@@ -7,34 +7,39 @@ import {db} from '../firebase'
 import Post1 from './Post1';
 function Profile_Right() {
     const [posts,setPost]=useState([]);  
-        useEffect(()=>{
-          db.collection('posts')
-          .orderBy("timestamp","desc")
-          .onSnapshot((snapshot)=>
-          setPost(snapshot.docs.map((doc)=>({id:doc.id,post:doc.data()})))
-          )
-         },[])  
-         const[{user},dispatch]=useStateValue();
+         
+  const[{user},dispatch]=useStateValue();
+  useEffect(()=>{
+    db.collection('posts')
+    .orderBy("timestamp","desc")
+    .onSnapshot(snapshot=>{
+    setPost(snapshot.docs.map(doc=>({
+        id:doc.id,
+        data:doc.data()})))
+    })
+   },[])  
 
     return (
         <div className="Profile_Right"> 
                 <Message_Sender1/>    
                 {
-                posts.map(({post,id})=>{
+                posts.map(post=>{
                     <Post1
-                     key={id}
-                     postId={id}
-                     profilePic={post.profilePic}
-                     message={post.message}
-                     timestamp={post.timestamp}
-                     imgName={post.imgName}
-                     username={post.username } 
+                     key={post.id}
+                     postId={post.id}
+                     profilePic={user.photoURL}
+                     message={post.data.message}
+                     timestamp={post.data.timestamp}
+                     imgName={post.data.imgName}
+                     username={user.displayName} 
+                     
                      
                     />
                     
                     
                     
-                })}
+                })
+                }
                 <Post1
                 profilePic={user.photoURL}
                 message="Hey #DBZ LOver"

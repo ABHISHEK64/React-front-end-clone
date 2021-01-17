@@ -14,7 +14,7 @@ function Messenger() {
             
         
             <Messenger_Sidebar/>  
-            <Route   path="/Messengger/t/:roomId" children={<Chat/>}/>
+            <Route   path="/Messenger/t/:roomId" children={<Chat/>}/>
              
                  
             </Router>   
