@@ -68,14 +68,38 @@ const Login=()=> {
     const signIn=(e)=>{
         e.preventDefault()
         auth.signInWithPopup(provider1)
-        .then(result=>{
+        .then((result)=>{
+                if(auth.user){
+                    auth.user.updateProfile({
+                        displayName:userName,
+                        photoURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuKHpTBSTmp7UWmw0C18FrbwD9FFsMgWHnZw&usqp=CAU"
+      
+                    })
+                db.collection('users').doc(auth.user.uid).set({
+                    uid:auth.user.uid,
+                    displayName:auth.user.displayName,
+                    birthday:birthday,
+                    photoURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuKHpTBSTmp7UWmw0C18FrbwD9FFsMgWHnZw&usqp=CAU",
+                    email:email,
+                    bio:"",
+                    coverURL:"",
+    
+                  
+      
+                })
+              alert('You Cant edit Your Profile But you can post and send messages');
+            }
             
+
             dispatch({
                 type:actionTypes.SET_USER,
                 user:result.user
             })
-            history.push('/Home')
-        }).catch(error=>alert(error.message))
+            history.push('/Home');
+
+        })
+          
+        .catch(error=>alert(error.message))
         //return this.get('store').createRecord('user');
     }
     const signUp=(event)=>{
@@ -93,7 +117,8 @@ const Login=()=> {
                     birthday:birthday,
                     photoURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuKHpTBSTmp7UWmw0C18FrbwD9FFsMgWHnZw&usqp=CAU",
                     email:email,
-                    bio:""
+                    bio:" ",
+                    coverURL:" "
                   
       
                 })
@@ -108,17 +133,48 @@ const Login=()=> {
        const unSubscribe= auth.onAuthStateChanged((authUser)=>{
             if (authUser)
             {
-                 console.log("Login Credential !!",authUser)
+                
                  setUser(authUser);
                  if(authUser.displayName){
-
+                    if(auth.user){
+                        console.log('auther user',auth.user);
+                        auth.user.updateProfile({
+                            displayName:userName,
+                           
+            
+          
+                        })
+                        db.collection('users').doc(auth.user.uid).set({
+                        uid:auth.user.uid,
+                        displayName:auth.user.displayName,
+                        birthday:birthday,
+                        photoURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuKHpTBSTmp7UWmw0C18FrbwD9FFsMgWHnZw&usqp=CAU",
+                        email:email,
+                        bio:"",
+                        coverURL:"",
+        
+                      
+          
+                    })
                  }
-                 else{
+                }
+                 else{ console.log("authUser",authUser)
                      return authUser.updateProfile({
                          displayName:userName,
-                         photoURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuKHpTBSTmp7UWmw0C18FrbwD9FFsMgWHnZw&usqp=CAU"
-                         
-                     })
+                         photoURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuKHpTBSTmp7UWmw0C18FrbwD9FFsMgWHnZw&usqp=CAU",
+        
+                            uid:auth.user.uid,
+                            displayName:auth.user.displayName,
+                            birthday:birthday,
+                            photoURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuKHpTBSTmp7UWmw0C18FrbwD9FFsMgWHnZw&usqp=CAU",
+                            email:email,
+                            bio:"",
+                            coverURL:""
+            
+                          
+              
+                        })
+                    
                  }
             }
             else {

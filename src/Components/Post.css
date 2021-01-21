@@ -35,7 +35,7 @@ cursor: pointer;
 }
 .post__image{
     width: 100%;
-    height: 150px;
+    height: 250px;
     border: none !important;
 }
 .post__image>img{
@@ -57,7 +57,7 @@ cursor: pointer;
     align-items: center;
 }
 .post__bottom{
-    padding-top: 10px;
+   
     border-top: 1px lightgrey;
     display: flex;
     justify-content: space-evenly;
@@ -66,14 +66,9 @@ cursor: pointer;
     cursor: pointer;
     margin-left: 20px;
     margin-right: 20px;
-    padding: 15px;
+    
 }
-.Line{
-    border-top: 1px solid rgb(218, 215, 215);
-    width: 90%;
-    justify-content: center;
-    margin-left: 5%;
-}
+
 .post__option{
     display: flex;
     align-items: center;
@@ -112,13 +107,14 @@ cursor: pointer;
     font-size: small;
 }
 .post__comment{
+display:block;
 
 
-    width: 100%;
-   margin: auto;
+margin: auto;
 }
 
 .post__comment>p{
+    display: flex;
     margin-left: 10px;
 }
 .post__comment>.button{
@@ -136,4 +132,41 @@ cursor: pointer;
 
 .post__button{
     display: none;
+}
+.like2{
+    
+    fill: #2e81f4 !important;
+    color: #4080FF !important;
+    filter: brightness(0) invert(62%) sepia(98%) saturate(12%) hue-rotate(175deg) brightness(90%) contrast(96%);
+}
+.like2.blue{
+   fill: #2e81f4 !important;
+ color: #4080FF !important;
+    animation: scale .5s;
+    
+
+}
+@keyframes scale{
+    0%{
+        transform: rotate(0deg);
+        transition: transform 200ms ease;
+    }
+    50%{
+        transform: rotate(-20deg);
+        transition: transform 200ms ease;
+    }
+    100%{
+        transform: rotate(0deg);
+        transition: transform 200ms ease;
+    }
+    
+}
+.textforlike .bluetextforlike{
+    color: #4080FF;
+}
+.LikePara{
+    margin-left: 5px;
+    font-size: medium;
+    color: #4080FF;
+
 }

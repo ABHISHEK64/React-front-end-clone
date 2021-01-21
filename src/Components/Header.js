@@ -20,7 +20,7 @@ import Login from '../Components/Login';
 import './Header.css';
 import {useStateValue} from '../StateProvider';
 import Modal from '@material-ui/core/Modal';
-import Modal1 from '@material-ui/core/Modal';
+
 
 import {makeStyles} from '@material-ui/core/styles'
 import {Link,useHistory} from 'react-router-dom';
@@ -56,7 +56,7 @@ function getModalStyle() {
 const Header= ({selected}) => {
     const[{user},dispatch]=useStateValue();
     const history=useHistory();
-    if(user==null){
+    if(user===null){
       history.push('/');
     }
     const [open,setOpen]=useState(false);
@@ -79,7 +79,7 @@ const Header= ({selected}) => {
     }
     const expendNavbar=()=>{
       document.getElementsByClassName("header_Logo")[0].style.display='none';
-      document.getElementsByClassName("header_search")[0].style.display='flex';
+      document.getElementsByClassName("header_search")[0].style.display='flex !important';
     
     }
     useEffect(()=>{
@@ -102,13 +102,13 @@ const Header= ({selected}) => {
     }
     return (
         <div className="header">
-             <Modal1 open1={open1} className={classes}>
+             <Modal open={open} className={classes}>
              
-             <div className="dropDown">
+             <div className="dropDown" style={{opacity:'1'}}>
              {console.log("i am modal")}
              <h1>hello</h1>
                   <ul id="list">
-                    {user!==undefined &&(
+                    {users!==undefined &&(
                       filteredUser.map((user1)=>{
                         <li className="id">
                           <Link onClick={collapseNavbr} to={`/profile/${user1.id}`}>
@@ -121,7 +121,7 @@ const Header= ({selected}) => {
                   </ul>
 
                 </div>
-             </Modal1>
+             </Modal>
              
             { 
                user?(
@@ -129,25 +129,10 @@ const Header= ({selected}) => {
             <div className="header_left">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="facebook_logo" className="header_Logo"/>
                 <ExitToAppIcon className="header_search"  onClick={collapseNavbr}/>
-                <div className="dropDown">
-                    {user!=undefined &&(
-                      filteredUser.map((user1)=>{
-                        {console.log(filteredUser)}
-                        <div className="dropDown">
-                              <h1>hello</h1>
-                            <ul id="list">
-                        <li className="id">
-                          <Link onClick={collapseNavbr} to={`/profile/${user1.id}`}>
-                            <Avatar src={user1.data.photoURL}/>
-                            <h3 style={{textTransform:'capitalize'}}>{user1.data.displayName}</h3>
-                          </Link>
-                        </li>
-                        </ul>
-
-                        </div>
-                      })
-                    )}
-                    </div>
+              
+                    
+                  
+                
                   
             </div>
            
@@ -157,7 +142,7 @@ const Header= ({selected}) => {
         
             <div className="header_input"  onClick={()=>setOpen1(true)}>
             <SearchIcon className="header_searchTerm" onClick={expendNavbar}/>
-           <input className="searchbox"placeholder="Search Facebook" type="text" onChange={updateSearchResults} />
+           <input className="searchbox"placeholder="Search Facebook" type="text" onChange={updateSearchResults} onClick={()=>setOpen1(true)}/>
           </div>
           
         
@@ -196,25 +181,27 @@ const Header= ({selected}) => {
                 
             </div>
             <div className='header__right'>
-              <Link to={`/Profile/${user.uid}`} style={{color:`black`},{textDecoration:`none`}}>
+            {users!==undefined &&(
+                      users.map((user1)=>{<Link to={`/Profile/${users.uid}`} style={{color:`black`},{textDecoration:`none`}}>
               <div className='header__info  header__Active'>
-                  <Avatar src={user.photoURL} />
-                  <h4>{user.displayName}</h4>
+                  <Avatar src={user1.data.photoURL} />
+                  <h4>{user1.data.displayName}</h4>
                  
               </div>
               </Link>
+                      }))}
               <Modal open={open}
         onClose={()=>setOpen(false)} className="mix">
                <div className="_8Met">
                    <Link to={`/Profile/${user.uid}`} style={{color:`black`},{textDecoration:`none`}}>
-                   <div className="_8Ret"><Avatar src={user.photoURL} className="Profile_img" />
-                   <h1>{user.displayName}</h1>
+                   <div className="_8Ret"><Avatar src={users.photoURL} className="Profile_img" />
+                   <h1>{users.displayName}</h1>
                    
                    </div>
                    </Link>
                    
                    <div className="para" >
-                   <h4><Link to={`/Profile/${user.uid}`} style={{color:`black`}}>See your profile</Link></h4>
+                   <h4><Link to={`/Profile/${users.uid}`} style={{color:`black`}}>See your profile</Link></h4>
                    </div>
                   <div className="_8Ket"></div>
                   <div className="_8Jet">

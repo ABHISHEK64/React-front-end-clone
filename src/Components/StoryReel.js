@@ -15,6 +15,16 @@ const StoryReel=()=> {
                profileSrc='https://media1.s-nbcnews.com/i/newscms/2015_02/835681/150106-mia-khalifa-830a_bcc977bc287eeeb9c3148b332b0e1a7b.jpg'
                title='Mia Khalifa'
               />
+              <Story
+               image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmQMy8Hz0AwmgoS160iN6MizPD56gt_D0eSw&usqp=CAU'
+               profileSrc='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmQMy8Hz0AwmgoS160iN6MizPD56gt_D0eSw&usqp=CAU'
+               title='Sonny Sangha'
+              />
+              <Story
+               image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvYdcrS9dWZ6HMk1XwwYm0E5CCfqGr86VX7A&usqp=CAU'
+               profileSrc='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ00KBwwXVMWYWb6KDXQ6IPOVcBo2XDpBhFcQ&usqp=CAU'
+               title='Nazz Sina'
+              />
        </div>
     )
 }

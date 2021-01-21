@@ -1,6 +1,11 @@
 .Sponsored{
    
-    margin-left: 50%;
+   display: flex;
+   flex: 1;
+   
+   flex-direction: column;
+   width: 100%;
+   height: 100vh;
 }
 h1{
     font-size: 20px;

@@ -12,18 +12,55 @@ import firebase from 'firebase'
 import './Post.css';
 import {useStateValue} from '../StateProvider';
 import { Link } from 'react-router-dom'
-const Post= forwardRef(({postId,profilePic,message,timestamp,imgName,username},ref)=>{
+const Post= forwardRef(({postId,profilePic,message,timestamp,imgName,username,PostUserId,noLikes},ref)=>{
     
      const [{user},dispatch]=useStateValue();
      const [comment,setComment]=useState();
      const[comments,setComments]=useState([]);
+     const [show,setShow]=useState('like2');
+     const [show2,setShow2]=useState('textforlike2');
+     const[postUser,setPostUser]=useState();
+     const[posterImage,setPosterImage]=useState()
+     //Comment
      useEffect(()=>{
+       let unSubscribe;
       if(postId){
-        db.collection("posts").doc(postId).collection("comments").onSnapshot((snapshot)=>{
+        unSubscribe=db.collection("posts").doc(postId).collection("comments").orderBy("timestamp","desc").onSnapshot((snapshot)=>{
           setComments(snapshot.docs.map((doc)=>doc.data()));
         })
       }
+      return()=>{
+        unSubscribe();
+      }
      },[postId])
+     //user credential who post image
+     useEffect(()=>{
+       if(PostUserId){
+         db.collection('users').doc(PostUserId).onSnapshot((snapshot)=>{
+           setPostUser(snapshot.data())
+         })
+       }
+     },[PostUserId])
+     //Like function
+     useEffect(()=>{
+       db.collection("posts")
+       .doc(postId)
+       .collection('Likes')
+       .doc(user.uid)
+       .get()
+       .then(doc2=>{
+         if(doc2.data()){
+           if(show=='like2'){
+             setShow(show=='like2 blue')
+             setShow(show=='text forlike bluetextforvalue')
+           }
+           else{
+             setShow('like2')
+             setShow2('textforlike')
+           }
+         }
+       })
+     },[postId,user.uid])
      const postComment=(e)=>{
        e.preventDefault();
        console.log("comment post");
@@ -35,10 +72,54 @@ const Post= forwardRef(({postId,profilePic,message,timestamp,imgName,username},r
        })
        setComment('');
      }
+     useEffect(()=>{
+       if(PostUserId){
+         db.collection('users').doc(PostUserId).onSnapshot((snapshot)=>{
+              setPosterImage(snapshot.data.photoURL)
+         })
+       }
+     })
      const Collapse=()=>{
        console.log("i am collapse");
-       document.getElementsByClassName('post__comment')[0].style.display='none';
-       document.getElementsByClassName('post__commentBox')[0].style.display='none';
+       document.getElementsByClassName('post__comment')[0].style.display='block';
+       document.getElementsByClassName('post__commentBox')[0].style.display='flex';
+     }
+     const LikeHandle=(event)=>{
+       event.preventDefault();
+       if(show=='like2'){
+         setShow('like2 blue')
+         setShow2('textforlike blluetextforlike')
+       }
+       else{
+         setShow('like2')
+         setShow2('textforlike')
+       }
+       db.collection('posts').doc(postId).get().then(docc=>{const data=docc.data()
+       console.log(show)
+       if(show=='like2'){
+         db.collection('posts').doc(postId).collection("Likes").doc(user.uid).get().then(doc2=>{if(doc2.data()){
+           console.log("Doc2:",doc2.data())
+         }
+         else{
+          db.collection('posts').doc(postId).collection("Likes").doc(user.uid).set({
+            Like:1
+          });
+           db.collection('posts') .doc(postId).update({
+             NoLikes:data.NoLikes+1
+           });
+           
+         }
+        })
+       }
+       else{
+        db.collection('posts').doc(postId).collection("Likes").doc(user.uid).delete().then((doc2)=>{
+          db.collection('posts').doc(postId).update({
+            NoLikes:data.NoLikes-1
+          });
+        });
+
+       }
+      })
      }
      return (
         
@@ -58,7 +139,6 @@ const Post= forwardRef(({postId,profilePic,message,timestamp,imgName,username},r
                  { imgName?(
                   <div className="post__image">
                     <img src={imgName}/>
-                  
                        </div>
                  ):(
                    console.log("no image")
@@ -66,10 +146,11 @@ const Post= forwardRef(({postId,profilePic,message,timestamp,imgName,username},r
                 }
               
             <div className="Line"></div>
+            <p className='LikePara'>{noLikes}{noLikes==1?"Like":"Likes"}</p>
             <div className='post__bottom' id="Comment">
-             <div className='post__option'>
-               <ThumbIcon/>
-               <p>Like</p>
+             <div className='post__option  like'>
+             <IconButton onClick={LikeHandle}> <ThumbIcon className={show}/> </IconButton>
+               <p className={show}>Like</p>
              </div>
              <div className='post__option'  >
                <IconButton onClick={Collapse}><ChatBubbleOutlineIcon /></IconButton>
@@ -89,8 +170,9 @@ const Post= forwardRef(({postId,profilePic,message,timestamp,imgName,username},r
               {
               comments.map((comment)=>(
                 <>
-             <Avatar src={comment.photoURL}/>
              <h3>{comment.username}</h3>
+             <Avatar src={comment.photoURL}/>
+             
              <p>{comment.message} </p>
              
              <Button className="button">Like</Button>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './Sponsor.css'
 const Sponsor=({SponsorImg,title,link})=> {
     return (
@@ -12,7 +13,7 @@ const Sponsor=({SponsorImg,title,link})=> {
                 <h2>{title}</h2>
             </div>
             <div className="Sponser_link">
-                <a>{link}</a>
+                <a href={link} style={{color:'black'}}>{link}</a>
             </div>
         </div>
     )

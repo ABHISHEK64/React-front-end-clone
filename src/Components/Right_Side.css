@@ -1,17 +1,13 @@
 .Right_Side{
-    float: right;
+    
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 0.25;
     position: fixed;
-    margin-top: 50px;
-    margin-left: 25%;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-}
-.line{
-    width: 10%;
-    border-bottom: 1px solid lightgray;
-    margin-left: 60%;
+    margin-left: 75%;
+    margin-top: 5%;
+    
+
+
+    
 }

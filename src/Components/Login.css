@@ -290,12 +290,14 @@ align-items: center;
     height: 48px;
     margin: 4px;
     box-sizing: content-box;
-      
+    outline:none !important;  
 }
 .SignUP_Name input{
     border: none !important;
     font-size: 17px;
     font-weight: normal;
+    outline: none !important;
+    background: none !important;
 }
 .para>p{
     display: flex;

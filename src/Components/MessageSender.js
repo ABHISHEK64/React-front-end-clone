@@ -1,5 +1,5 @@
 import { Avatar, IconButton, Input } from '@material-ui/core'
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 
 import VideocamIcon from '@material-ui/icons/Videocam';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
@@ -10,12 +10,29 @@ import db from '../firebase'
 import axios from '../axios'
 import {useStateValue} from '../StateProvider'
 import FormData from 'form-data'
+import {useHistory,useParams}  from 'react-router-dom';
 const MessageSender=()=>{
-    const [input,setInput]=useState("")
     
-    const [imageUrl,setImageurl]=useState("")
+    const [input,setInput]=useState('')
+    
+    const [imageUrl,setImageurl]=useState('')
     const [{user},dispatch]=useStateValue()
-   
+    const history=useHistory();
+    if(user===null){
+        history.push('/');
+      }
+      const [profileUserData,setProfileUserData]=useState();
+      const{username,uid} =useParams();
+
+    //let currentUser=firebase.auth().currentUser;
+       useEffect(()=>{
+          db.collection('users').doc(uid).onSnapshot((doc)=>{
+              setProfileUserData(doc.data());
+          })
+       },[]);
+
+      const user1=firebase.auth().currentUser;
+      const [noLikes,setNoLikes]=useState(0);
     const handleSubmit= async(e)=>{
         e.preventDefault();
     
@@ -24,13 +41,14 @@ const MessageSender=()=>{
                 profilePic:user.photoURL,
                 message:input,
                 imgName:imageUrl,
-                timestamp:firebase.firestore.FieldValue.serverTimestamp()
-
+                timestamp:firebase.firestore.FieldValue.serverTimestamp(),
+                NoLikes:noLikes,
+                uid:user1?.uid
             });
         
                
-        setImageurl("");
-        setInput("");
+        setImageurl('');
+        setInput('');
     }
     
     
@@ -41,16 +59,17 @@ const MessageSender=()=>{
               <form>
                   <input 
                   className='messagesender__input' 
+                  type="text"
                   placeholder={`what 's going on mind', ${user.displayName}?`} 
                   value={input} 
                   onChange={(e)=>setInput(e.target.value)}/>
-                    <input  
-                     value={imageUrl}
-                  className='messageSender__File_Selecion'
-                
-                  onChange={(e)=>setImageurl(e.target.value)}
-                  
-                  placeholder='imageUrl Optional'/>
+                  <input 
+                  className='messagesender__imgae' 
+                  type="text"
+                  placeholder={`want to share your image enter image url, ${user.displayName}?`} 
+                  value={imageUrl} 
+                  onChange={(e)=>setImageurl(e.target.value)}/>
+                    
                   {/*<IconButton type="file" onClick={handleChange}><PhotoLibraryIcon/></IconButton>*/    }  
 
                   <button onClick={handleSubmit} type='submit'></button>

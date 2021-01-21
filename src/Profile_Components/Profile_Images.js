@@ -89,7 +89,12 @@ export default function ImageGridList() {
             
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKaUk939bCCZnFKBzP3VlsIKprp47EtdDMcA&usqp=CAU"/>
             </GridListTile>
+            <GridListTile>
             
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVxl0f8yUuUMs3VlXU8cFXdnkF3J6iwmgSiQ&usqp=CAU"/>
+            
+            
+            </GridListTile>
       
       </GridList>
     </div>

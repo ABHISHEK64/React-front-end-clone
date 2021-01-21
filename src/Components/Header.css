@@ -4,16 +4,17 @@
     padding: 9px 9px;
     justify-content: space-between;
     position: fixed;
-    background-color: white;
+    background-color: white !important;
     z-index: 100;
     top: 0;
     width: 100%;
-    box-shadow: 0px 5px 8px -9px rgba(0,0,0, 0.75);
+    box-shadow: 0px 5px 8px -7px rgba(0,0,0, 0.75);
 }
 .header_left{
     display: flex;
-    flex:0.25;
+    flex:0.05;
     justify-content: space-evenly;
+
 }
 .header_left>img{
 
@@ -21,21 +22,21 @@
     object-fit: contain;
     cursor: pointer;
     border-radius: 100%;
-    margin-left: -67%;
+    margin-left:5%;
 }
 .header_search{
-    
+    display: none !important ;
     
 
     cursor: pointer;
     width: 40px;
     margin-top: 10px;
-    margin-left: -67%;
-    display: flex;
+    margin-left: -50%;
+    
 }
 .header_input{
     display: flex;
-    flex: 0.2;
+    flex: 1;
     
     
     align-items: center;
@@ -43,7 +44,7 @@
     background-color: #eef1f7c7;
     padding: 10px;
     width: 18.6%;
-    margin-left: -10%;
+
     border-radius:33px;
 }
 .header_input>.MuiSvgIcon-root{
@@ -57,17 +58,7 @@
     font-weight: medium;
     color: grey;
 }
-.dropDown{
-    display: flex;
-    align-items: center;
-margin-top: 3%;
-background-color: rgb(236, 157, 11) !important;
-height: fit-content;
-width: 33%;
-margin-left: 110%;
-position: relative;
 
-}
 #list{
     list-style: none;
     margin: 10px;
@@ -83,10 +74,11 @@ position: relative;
     display: flex;
     flex: 0.25;
     justify-content: center;
-
+    
 }
 .header__option{
     display: flex;
+    
     margin: auto;
     align-items: center;
     width: 100px;
@@ -107,12 +99,14 @@ position: relative;
 
 .header__option>.MuiSvgIcon-root{
     color: gray;
+    
     font-size: 3em;
+    margin: auto;
     justify-content: center;
 
 }
 .header__option--Active>.MuiSvgIcon-root:active{
-    color: #2e81f4;
+    fill: #2e81f4;
 }
 .header__option>.MuiSvgIcon-root:hover{
     color: #2e81f4;
@@ -122,6 +116,7 @@ position: relative;
     display: flex;
     flex: 0.25;
     align-items: center;
+    
 
 }
 .header__info>h4{
@@ -129,12 +124,14 @@ position: relative;
     text-transform: capitalize;
 }
 .header__right{
+    
     display: flex;
     flex: 0.25;
     cursor: pointer;
 }
 .header__right >.MuiSvgIcon-root{
     font-size: 5em;
+    
 }
 .header__Active:active{
     color: #2e81f4;

@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     padding: 10px;
-    cursor: pointer;
+    cursor: pointer !important;
     color: #2e81f4;
     margin-left: -2px;
     width: 100%;
@@ -14,6 +14,7 @@
     height: 20px;
     color: #2e81f4;
     text-decoration: none !important;
+    cursor: pointer;
 
 
 }

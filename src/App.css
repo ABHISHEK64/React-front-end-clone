@@ -1,11 +1,14 @@
 .App{
-  background-color: #f1f2f5;
-  overflow: hidden;
+  scroll-behavior: auto;
+  
   width: 100%;
   background-size: cover;
-  height: 100%;
+  
 }
 .App_Body{
   display: flex;
   flex: 1;
+  background-color: #f1f2f5;
+  height: 700vh;
+  overflow: hidden;
 }

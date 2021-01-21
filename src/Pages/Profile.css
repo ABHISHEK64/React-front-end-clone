@@ -1,3 +1,4 @@
+
 .profile{
     width: 100%;
     height: 200vh;
@@ -18,6 +19,7 @@
  font-size: 2.3em;
  text-transform: capitalize;
  font-weight: bold;
+ margin-top: 5%;
 }
 .profile_Header>.Add_Bio{
     text-align: center;
@@ -30,6 +32,22 @@
     display: flex;
     flex: 1;
     width: 100%;
-    height: 200vh;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.1)!important;
+}
+.bioText{
+    text-align: center;
+    font-family: fantasy;
+    font-size: medium;
+}
+.Add_Bio{
+    display: flex;
+    align-items: center;
+    margin-right: 50%;
+}
+.bioFields{
+    display: inline-block;
+    align-items: center;
+    margin: auto;
+    margin-left: 45%;
 }
