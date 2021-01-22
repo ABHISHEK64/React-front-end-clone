@@ -126,16 +126,17 @@ const Header= ({selected}) => {
             { 
                user?(
                <>
+            <Link to='/home' >
             <div className="header_left">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="facebook_logo" className="header_Logo"/>
                 <ExitToAppIcon className="header_search"  onClick={collapseNavbr}/>
-              
+      
                     
                   
                 
                   
             </div>
-           
+            </Link>
           
                 
 
@@ -181,27 +182,27 @@ const Header= ({selected}) => {
                 
             </div>
             <div className='header__right'>
-            {users!==undefined &&(
-                      users.map((user1)=>{<Link to={`/Profile/${users.uid}`} style={{color:`black`},{textDecoration:`none`}}>
+      
+              <Link to={`/Profile/${user?.displayName}/${user.uid}`} style={{color:`black`},{textDecoration:`none`}}>
               <div className='header__info  header__Active'>
-                  <Avatar src={user1.data.photoURL} />
-                  <h4>{user1.data.displayName}</h4>
+                  <Avatar src={user?.photoURL} />
+                  <h4>{user?.displayName}</h4>
                  
               </div>
               </Link>
-                      }))}
+                
               <Modal open={open}
         onClose={()=>setOpen(false)} className="mix">
                <div className="_8Met">
-                   <Link to={`/Profile/${user.uid}`} style={{color:`black`},{textDecoration:`none`}}>
-                   <div className="_8Ret"><Avatar src={users.photoURL} className="Profile_img" />
-                   <h1>{users.displayName}</h1>
+                   <Link to={`/Profile/${user?.displayName}/${user?.uid}`} style={{color:`black`},{textDecoration:`none`}}>
+                   <div className="_8Ret"><Avatar src={user?.photoURL} className="Profile_img" />
+                   <h1>{user?.displayName}</h1>
                    
                    </div>
                    </Link>
                    
                    <div className="para" >
-                   <h4><Link to={`/Profile/${users.uid}`} style={{color:`black`}}>See your profile</Link></h4>
+                   <h4><Link to={`/Profile/${user?.displayName}/${user?.uid}`} style={{color:`black`}}>See your profile</Link></h4>
                    </div>
                   <div className="_8Ket"></div>
                   <div className="_8Jet">

@@ -26,7 +26,7 @@ function Friends() {
              
             { users.map(user1=>(
                 user1.displayName!==currentUser?(
-                <Link to={`/Profile/${user1.id}`}>
+                <Link to={`/Profile/${user1.data.displayName}/${user1.id}`}>
                 <div className="Friends_Body">
                 <Link to={`/Profile/${user1.id}`}><Avatar src={user1.data.photoURL}/></Link> 
                  <h3>{user1.data.displayName}</h3>

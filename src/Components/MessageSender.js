@@ -55,18 +55,18 @@ const MessageSender=()=>{
     return (
         <div className="messageSender">
             <div className="messageSender__top">
-              <Avatar src={user.photoURL}/>
+              <Avatar src={user?.photoURL}/>
               <form>
                   <input 
                   className='messagesender__input' 
                   type="text"
-                  placeholder={`what 's going on mind', ${user.displayName}?`} 
+                  placeholder={`what 's going on mind', ${user?.displayName}?`} 
                   value={input} 
                   onChange={(e)=>setInput(e.target.value)}/>
                   <input 
                   className='messagesender__imgae' 
                   type="text"
-                  placeholder={`want to share your image enter image url, ${user.displayName}?`} 
+                  placeholder={`want to share your image enter image url, ${user?.displayName}?`} 
                   value={imageUrl} 
                   onChange={(e)=>setImageurl(e.target.value)}/>
                     

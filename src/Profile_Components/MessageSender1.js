@@ -1,84 +1,78 @@
-import { Avatar, Input } from '@material-ui/core'
-import React,{useState} from 'react';
+import { Avatar, IconButton, Input } from '@material-ui/core'
+import React,{useState,useEffect} from 'react';
 
 import VideocamIcon from '@material-ui/icons/Videocam';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
-import FlagIcon from '@material-ui/icons/Flag';
+import InsertEmotionIcon from '@material-ui/icons/InsertEmoticon';
 import './MessageSender1.css';
 import firebase from 'firebase'
 import db from '../firebase'
 import axios from '../axios'
 import {useStateValue} from '../StateProvider'
 import FormData from 'form-data'
-const MessageSender1=()=>{
+import {useHistory,useParams}  from 'react-router-dom';
+const MessageSender=()=>{
+    
     const [input,setInput]=useState('')
     
-    const [imageUrl,setImageurl]=useState(null)
+    const [imageUrl,setImageurl]=useState('')
     const [{user},dispatch]=useStateValue()
-    const handleChange=(e)=>{
-         if(e.target.files[0])
-         {setImageurl(e.target.files[0])}
-    }
+    const history=useHistory();
+    if(user===null){
+        history.push('/');
+      }
+      const [profileUserData,setProfileUserData]=useState();
+      const{username,uid} =useParams();
+
+    //let currentUser=firebase.auth().currentUser;
+       useEffect(()=>{
+          db.collection('users').doc(uid).onSnapshot((doc)=>{
+              setProfileUserData(doc.data());
+          })
+       },[]);
+
+      const user1=firebase.auth().currentUser;
+      console.log('user1:',user1);
+      const [noLikes,setNoLikes]=useState(0);
     const handleSubmit= async(e)=>{
-        e.preventDefault()
-        if(imageUrl){
-            const imgForm=new FormData()
-            imgForm.append('file',imageUrl,imageUrl.name)
-            axios.post('https://facebook-clone-mern1.herokuapp.com/upload/image',imgForm,{
-                headers:{
-                    'accept':'application/json',
-                    'Accept-Language':'en-Us,en;q=0.8',
-                    'Content-Type':`multipart/form-data; boundary=${imgForm._boundary}`,
-                }
-            }).then((res)=>{
-                console.log(res.data)
-                const postsData={
-                    message:input,
-                    imgName:res.data.filename,
-                    username:user.displayName,
-                    profilePic:user.photoURL,
-                    timestamp:Date.now()
-                }
-                console.log(postsData)
-                savePost(postsData)
-            })
-        }
-        else{
-            const postsData={
-                message:input,
-                
+        e.preventDefault();
+    
+            db.collection('posts').add({
                 username:user.displayName,
                 profilePic:user.photoURL,
-                timestamp:Date.now()
-            }
-            console.log(postsData)
-                savePost(postsData)
-        }
-        setImageurl(null)
-        setInput('')
+                message:input,
+                imgName:imageUrl,
+                timestamp:firebase.firestore.FieldValue.serverTimestamp(),
+                NoLikes:noLikes,
+                uid:user1?.uid
+            });
+        
+               
+        setImageurl('');
+        setInput('');
     }
-    const savePost=async(postsData)=>{
-        await axios.post('https://facebook-clone-mern1.herokuapp.com/upload/post',postsData).then((resp)=>{
-            console.log(resp)
-        })
-    }
+    
+    
     return (
         <div className="messageSender1">
-                <div className="messageSender__top">
-              <Avatar src={user.photoURL}/>
+            <div className="messageSender__top">
+              <Avatar src={user1?.photoURL}/>
               <form>
-            
-                 
-                  <input type="text" 
+                  <input 
                   className='messagesender__input' 
-                  placeholder={`what 's going on mind', ${user.displayName}?`} 
+                  type="text"
+                  placeholder={`what 's going on mind', ${user?.displayName}?`} 
                   value={input} 
                   onChange={(e)=>setInput(e.target.value)}/>
-                   <PhotoLibraryIcon style={{color:'green'}}>
-                    <input type="file" 
-                  className='messageSender__File_Selecion'
-                  onClick={handleChange}/>
-                        </PhotoLibraryIcon>
+                  <input 
+                  className='messagesender__imgae' 
+                  type="text"
+                  placeholder={`want to share your image enter image url, ${user?.displayName}?`} 
+                  value={imageUrl} 
+                  onChange={(e)=>setImageurl(e.target.value)}/>
+                    
+                  {/*<IconButton type="file" onClick={handleChange}><PhotoLibraryIcon/></IconButton>*/    }  
+
                   <button onClick={handleSubmit} type='submit'></button>
               </form>
             </div>
@@ -88,16 +82,13 @@ const MessageSender1=()=>{
                       <h3>Live Video</h3>
                 </div>
                 <div className="messageSender__option">
-                    <PhotoLibraryIcon style={{color:'green'}}>
-                    <input type="file" 
-                  className='messageSender__File_Selecion'
-                  onClick={handleChange}/>
-                        </PhotoLibraryIcon> 
+                    <PhotoLibraryIcon style={{color:'green'}}/>
+                 
                     
                       <h3>Photo/Video</h3>
                 </div>
                 <div className="messageSender__option">
-                    <FlagIcon style={{color:'lightblue',fontsize:'2rem'}}/>
+                    <InsertEmotionIcon style={{color:'orange'}}/>
                       <h3>FeelingActivity</h3>
                 </div>
 
@@ -106,4 +97,4 @@ const MessageSender1=()=>{
     )
 }
 
-export default MessageSender1
+export default MessageSender

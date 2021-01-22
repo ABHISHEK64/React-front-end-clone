@@ -69,3 +69,110 @@ padding: 15px;
 .messageSender__option>h4{
 font-size: medium;
 }
+@media only screen and (max-width: 800px) {
+.messageSender
+    {
+      
+        width: fit-content;
+        max-width: 410px;
+        
+    }
+    
+    
+    
+       
+}
+@media only screen and (max-width: 500px) {
+    .messageSender
+        {
+          
+            
+          
+            width: fit-content;
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            
+        }
+    .messageSender__top{
+        display: flex;
+        
+    
+}
+    .messagesender__input{
+        display: flex;
+        flex-direction: column;
+        margin-left:-18px;
+        width: 20%;
+    }
+    .messagesender__imgae{
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+    }
+    .messageSender__bottom{
+        width: 12px;
+        margin-left: -20px;
+    }
+   
+        
+    
+        
+        
+           
+    }
+    @media only screen and (max-width: 400px) {
+        .messageSender
+            {
+              
+                
+              
+                width: -moz-fit-content;
+              
+                
+              
+                width: fit-content;
+                max-width: 310px;
+                display: flex;
+                flex-direction: column;
+                
+            }
+        .messageSender__top{
+            display: flex;
+           
+            
+        
+    }
+        .messagesender__input{
+            display: flex;
+            
+           
+            width: 20px;
+        }
+        .messagesender__imgae{
+            display: flex;
+            flex-direction: column;
+            width: 20px;
+        }
+        .messageSender__bottom{
+            font-size: xx-small;
+            display: flex;
+            flex-direction: column;
+            margin-left: -10px;
+            width: -12px
+        }
+        .messageSender__option{
+             font-size: xx-small;
+            width: 12px;
+            margin-left:30px;
+            
+        }
+       
+            
+        
+            
+            
+               
+        }
+    
+    

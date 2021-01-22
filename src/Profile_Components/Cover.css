@@ -111,3 +111,9 @@
     background-color: lightgray;
     font-size: medium;
 }
+@media only screen and(max-width:900px){
+    .Cover_Pic{
+        width: 200px;
+        height: 300px;
+    }
+}

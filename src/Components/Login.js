@@ -7,7 +7,7 @@ import  './Login.css';
 import Modal from '@material-ui/core/Modal';
 import {makeStyles} from '@material-ui/core/styles'
 import {useHistory} from 'react-router-dom';
-
+import CloseIcon from '@material-ui/icons/Close';
 function rand() {
     return Math.round(Math.random() * 20) - 10;
 }  
@@ -24,7 +24,7 @@ function getModalStyle() {
   const useStyles = makeStyles((theme) => ({
     paper: {
       position: 'absolute',
-      width: 400,
+      width: 200,
       borderRadius:"6px",
       height:500,
       backgroundColor: theme.palette.background.paper,
@@ -36,6 +36,7 @@ function getModalStyle() {
       
       
     },
+    
   }));  
 const Login=()=> {
     const history=useHistory()
@@ -46,54 +47,56 @@ const Login=()=> {
     const [userName,setUsername]=useState('')
     const [password,setPassword]=useState('')
     const [email,setEmail]=useState('')
-    const [user,setUser]= useState(null)
+    const[user,setUser]=useState();
     const [birthday,setBirthday]=useState([]);
     const[gender,setGender]=useState('');
+
+//Login Function
     const handleLogin=(event)=>{
      event.preventDefault();
      auth.signInWithEmailAndPassword(email,password)
-     .then((result)=>{
-         console.log(result)
+     .then((auth)=>{
+         console.log(auth);
          dispatch({
             type:actionTypes.SET_USER,
-            user:result.user
-            
+            user:auth.user
         })
-        history.push('/Home')
+
+         history.push('/Home')
 
      })  
      .catch((error)=>alert(error.message))
     }
-    
+    //SignUp with Google
     const signIn=(e)=>{
         e.preventDefault()
         auth.signInWithPopup(provider1)
-        .then((result)=>{
+        .then((auth)=>{
                 if(auth.user){
                     auth.user.updateProfile({
                         displayName:userName,
-                        photoURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuKHpTBSTmp7UWmw0C18FrbwD9FFsMgWHnZw&usqp=CAU"
+                        photoURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuKHpTBSTmp7UWmw0C18FrbwD9FFsMgWHnZw&usqp=CAU",
       
                     })
                 db.collection('users').doc(auth.user.uid).set({
                     uid:auth.user.uid,
-                    displayName:auth.user.displayName,
+                    displayName:userName,
                     birthday:birthday,
                     photoURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuKHpTBSTmp7UWmw0C18FrbwD9FFsMgWHnZw&usqp=CAU",
                     email:email,
                     bio:"",
-                    coverURL:"",
+                    coverURL:"https://image.winudf.com/v2/image/Y29tLmRpYXpzdHVkaW8uQm9ydXRvTmFydXRvV2FsbHBhcGVyX3NjcmVlbl85XzE1MTg3MjA4MTJfMDEx/screen-9.jpg?fakeurl=1&type=.jpg",
     
                   
       
                 })
-              alert('You Cant edit Your Profile But you can post and send messages');
+           console.log('You Cant edit Your Profile But you can post and send messages');
             }
             
 
             dispatch({
                 type:actionTypes.SET_USER,
-                user:result.user
+                user:auth.user
             })
             history.push('/Home');
 
@@ -102,13 +105,14 @@ const Login=()=> {
         .catch(error=>alert(error.message))
         //return this.get('store').createRecord('user');
     }
+    //Create User Account
     const signUp=(event)=>{
         event.preventDefault();
       auth.createUserWithEmailAndPassword(email,password).then((auth)=>{
           if(auth.user){
               auth.user.updateProfile({
                   displayName:userName,
-                  photoURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuKHpTBSTmp7UWmw0C18FrbwD9FFsMgWHnZw&usqp=CAU"
+                
 
               }).then(()=>{
                 db.collection('users').doc(auth.user.uid).set({
@@ -129,67 +133,8 @@ const Login=()=> {
         
         .catch((error)=>alert(error.message));
     }
-    useEffect(() => {
-       const unSubscribe= auth.onAuthStateChanged((authUser)=>{
-            if (authUser)
-            {
-                
-                 setUser(authUser);
-                 if(authUser.displayName){
-                    if(auth.user){
-                        console.log('auther user',auth.user);
-                        auth.user.updateProfile({
-                            displayName:userName,
-                           
-            
-          
-                        })
-                        db.collection('users').doc(auth.user.uid).set({
-                        uid:auth.user.uid,
-                        displayName:auth.user.displayName,
-                        birthday:birthday,
-                        photoURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuKHpTBSTmp7UWmw0C18FrbwD9FFsMgWHnZw&usqp=CAU",
-                        email:email,
-                        bio:"",
-                        coverURL:"",
-        
-                      
-          
-                    })
-                 }
-                }
-                 else{ console.log("authUser",authUser)
-                     return authUser.updateProfile({
-                         displayName:userName,
-                         photoURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuKHpTBSTmp7UWmw0C18FrbwD9FFsMgWHnZw&usqp=CAU",
-        
-                            uid:auth.user.uid,
-                            displayName:auth.user.displayName,
-                            birthday:birthday,
-                            photoURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuKHpTBSTmp7UWmw0C18FrbwD9FFsMgWHnZw&usqp=CAU",
-                            email:email,
-                            bio:"",
-                            coverURL:""
-            
-                          
-              
-                        })
-                    
-                 }
-            }
-            else {
-                setUser(null)
-            }
-        })
-    
-
-        
-        
-        return()=>{
-            unSubscribe();
-    }
-      
-    }, [user,userName])
+    //USE EFFCET signUP User
+ 
     return (
         <div className='login'>
             <Modal
@@ -197,14 +142,17 @@ const Login=()=> {
         onClose={()=>setOpen(false)}
         >
             <div className="_4et">
-         <div style={modalStyle} className={classes.paper}>
+         <div  className="_4et">
             <div className="_3et">
     
                   <div className="Header"><h1>
                    SignUp
                </h1>
-               <p>It's quick and easy.</p></div>
-               
+               <p>It's quick and easy.</p>
+               <Button className="Close_Btn2"> <CloseIcon/> </Button>
+               </div>
+               <Button className="Close_Btn2"> <CloseIcon className="Close_Btn2"/> </Button>
+
             
                <div className="_8icz"></div>  
                <form className="Sign_Up">

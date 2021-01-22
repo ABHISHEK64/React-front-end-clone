@@ -12,8 +12,8 @@ import { useStateValue } from '../StateProvider';
 import {Link,useHistory,useParams} from 'react-router-dom'
 import{db} from '../firebase';
 
-const Left_Side=()=>{  
-    const [{user},dispatch]=useStateValue()
+const Left_Side=({user})=>{
+    
     const history=useHistory();
     if(user==null){
         history.push('/');
@@ -27,20 +27,30 @@ const Left_Side=()=>{
               setProfileUserData(doc.data());
           })
        },[]);
-       console.log('profile',profileUserData)
-    return (
-        <div className="Sidebar"> 
-           <Link to={`/Profile/${user.uid}`} style={{textDecoration:'none'}}><SidebarRow src={user.photoURL} title ={user.displayName}/></Link> 
+       console.log('profile',profileUserData?.photoURL)
+       const ExpendMore=()=>{
+           document.getElementsByClassName('Sidebar')[0].style.display='block';
+           document.getElementsByClassName('Expend')[0].style.display='none';
+       }
+       const collapse_NOW=()=>{
+        document.getElementsByClassName('Sidebar')[0].style.display='none';
+        document.getElementsByClassName('Expend')[0].style.display='block';
+    }
+    return ( <>
+        <div className="Sidebar" style={{display:'block'}}> 
+           <Link to={`/Profile/${user?.displayName}/${user?.uid}`} style={{textDecoration:'none'}}><SidebarRow src={user?.photoURL} title ={user?.displayName}/></Link> 
            <SidebarRow Icon={LocalHospitalIcon} title="Near Hospital "/>
            <SidebarRow Icon={EmojiFlagIcon} title="Pages "/>
            <SidebarRow Icon={PeopleIcon} title="Friends"/>
           <Link to={`/Messenger`} style={{textDecoration:'none'}}><SidebarRow Icon={ChatIcon} title="Messenger "/></Link> 
            <SidebarRow Icon={StorefrontIcon} title="Market "/>
            <SidebarRow Icon={VideoLiberyIcon} title="Videos "/>
-           <SidebarRow Icon={ExpandMoreOutlined} title="More "/>
+          <div onClick={collapse_NOW}><SidebarRow Icon={ExpandMoreOutlined} title="More " /></div> 
 
                        
         </div>
+        <div onClick={ExpendMore} className="Expend" style={{display:'none'}}><SidebarRow Icon={ExpandMoreOutlined} title="More "/></div>
+        </>
     )
 }
 

@@ -9,3 +9,8 @@
     margin-left: 10%;
     
 }
+@media only screen and(max-width:500px){
+    .feed{
+        margin-left: -22% !important;
+    }
+}

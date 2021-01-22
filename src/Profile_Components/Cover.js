@@ -110,10 +110,10 @@ function Cover({photoURL,coverImg}) {
           </div>
       </Modal>
         <div className="Cover_Pic">
-            <img className="Cover_IMG" src={!coverURL?("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAw8OUZUdfVRk1UvOKYl2kj2GmzDWaoiblLw&usqp=CAU"):({coverURL})}/>
+            <img className="Cover_IMG" src={profileUserData?.coverURL}/>
         </div>
         <div className="User">
-      <Avatar src={photoURL} className="user_profile"/>
+      <Avatar src={profileUserData ?.photoURL} className="user_profile"/>
         <Button className="Camera_icon" onClick={()=>setOpen(true)}><CameraAltIcon className="Camera"/></Button>
         <Button className="Camera_cover" onClick={()=>setOpen1(true)}><CameraAltIcon className="Camera2"/> <h6>Edit Cover Photo</h6></Button>
         </div>

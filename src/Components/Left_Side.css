@@ -7,3 +7,12 @@
 
     position: fixed;
 }
+@media only screen and (max-width: 500px){
+    .Sidebar{
+       display: none !important;
+    }
+    .Expend{
+        display: block !important;
+        margin-top: 10%;
+    }
+}

@@ -11,7 +11,7 @@ import {Switch,Route} from "react-router-dom";
 import { auth } from './firebase';
 import Messenger from './Pages/Messenger';
 function  App () {
-  const [{user},dispatch]=useStateValue();
+  const [{user},dispatch]=useState([]);
   useEffect(() => {
     auth.onAuthStateChanged(authUser=>{
     
@@ -42,10 +42,10 @@ function  App () {
        <div className="App">   
       <Header user={user} selected />
        <div className="App_Body">
-       <Left_Side/>  
+       <Left_Side user={user}/>  
       
-      <Feed/>
-      <Right_Side/>
+      <Feed user={user}/>
+      <Right_Side user={user}/>
        </div>
        
       
@@ -57,14 +57,14 @@ function  App () {
        <Route exact path="/">
        <Login/>
        </Route>
-       <Route  path="/Profile/:uid" >
+       <Route  path="/Profile/:usename/:uid" >
        <Header/>
-        <Profile/>
+        <Profile user={user}/>
        </Route>
        
        <Route exact path="/Messenger">
-       <Header/>
-        <Messenger/>
+       <Header user={user}/>
+        <Messenger user={user}/>
        </Route>
      </Switch>
       

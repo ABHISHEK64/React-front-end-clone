@@ -15,7 +15,7 @@ import $ from 'jquery';
         const{username,uid} =useParams();
         const [posts,setPost]=useState([]);  
        const[{user},dispatch]=useStateValue();      
-       
+       console.log("user:",username,"userid",uid);
        const history=useHistory();
        const [profileUserData,setProfileUserData]=useState();
        const[bio,setBio]=useState('');
@@ -85,7 +85,7 @@ import $ from 'jquery';
               
                 <div className="profile_Header">
                      <Cover photoURL={user.photoURL} coverURL={user.photoURL} />
-                     <h1>{user.displayName}</h1>
+                     <h1>{profileUserData?.displayName}</h1>
                      <p className="bioText"></p>
                      <p className="Add_Bio" onClick={addBio}>Add Bio</p>
                      <div className="bioFields">

@@ -12,6 +12,7 @@ import firebase from 'firebase'
 import './Post.css';
 import {useStateValue} from '../StateProvider';
 import { Link } from 'react-router-dom'
+import { post } from 'jquery'
 const Post= forwardRef(({postId,profilePic,message,timestamp,imgName,username,PostUserId,noLikes},ref)=>{
     
      const [{user},dispatch]=useStateValue();
@@ -123,9 +124,9 @@ const Post= forwardRef(({postId,profilePic,message,timestamp,imgName,username,Po
      }
      return (
         
-        <div className='post' ref={ref}>
+        <div className='post1' ref={ref}>
             <div className='post__top'>
-             <Link to={`/Profile/${user.uid}`}><Avatar src={profilePic} className='post__Avatar'/></Link>
+             <Link to={`/Profile/${username}/${PostUserId}`}><Avatar src={profilePic} className='post__Avatar'/></Link>
              <div className='post__topInfo'>
               <h3>{username}</h3>
               <p>{new Date(timestamp?.toDate()).toUTCString()}</p>

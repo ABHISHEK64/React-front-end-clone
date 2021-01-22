@@ -1,4 +1,6 @@
-.post{
+.post1{
+    display: flex;
+    flex-direction: column;
     width: fit-content;
     height: fit-content;
     margin-top:15px ;
@@ -170,3 +172,46 @@ margin: auto;
     color: #4080FF;
 
 }
+@media only screen and (max-width: 800px) {
+    .post1{
+      display: flex;
+      flex-direction: column;
+      max-width: 410px;
+    }
+   }
+@media only screen and (max-width: 500px) {
+    .post1{
+      display: flex;
+      flex-direction: column;
+      width: fit-content;
+      max-width: 300px;  
+    }
+    .post__bottom{
+        display: flex;
+        
+        
+    }
+    .post__option{
+        font-size: xx-small;
+        width: 90px;
+    }
+    
+   }
+@media only screen and (max-width: 400px) {
+    .post1{
+      display: flex;
+      flex-direction: column;
+      width: fit-content;
+      max-width: 200px;  
+    }
+    .post__bottom{
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .post__option{
+        font-size: xx-small;
+        width: 40px;
+    }
+    
+   }
